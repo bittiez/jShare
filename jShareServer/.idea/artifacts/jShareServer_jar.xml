@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="jShareServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/jShareServer_jar</output-path>
+    <root id="archive" name="jShareServer.jar">
+      <element id="module-output" name="jShareServer" />
+    </root>
+  </artifact>
+</component>
