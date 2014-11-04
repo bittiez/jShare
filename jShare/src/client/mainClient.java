@@ -2,6 +2,7 @@ package client;
 
 import client.Dialogs.couldNotConnect;
 import client.Dialogs.login;
+import client.Guis.connectionUI;
 import client.Guis.gui;
 
 import java.io.*;
@@ -16,6 +17,9 @@ public class mainClient {
         Socket clientSocket = null;
         DataOutputStream out = null;
         BufferedReader in = null;
+
+        new connectionUI();
+
         try {
             clientSocket = new Socket("127.0.0.1", 2343);
             out = new DataOutputStream(clientSocket.getOutputStream());
