@@ -5,6 +5,7 @@ import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -28,7 +29,8 @@ public class UI2 {
     JFrame frame = null;
 
     private ArrayList<JPanel> chatPanels = null;
-    private ArrayList<JXLabel> chatMessages = null;
+    private ArrayList<JTextPane> chatMessages = null;
+    private ArrayList<JXLabel> chatNames = null;
     private ArrayList<String> chatHistory = null;
     private int lastChatHistoryRequested = 0;
 
@@ -43,7 +45,8 @@ public class UI2 {
         this.con_in = input;
 
         chatPanels = new ArrayList<JPanel>();
-        chatMessages = new ArrayList<JXLabel>();
+        chatMessages = new ArrayList<JTextPane>();
+        chatNames = new ArrayList<JXLabel>();
         chatHistory = new ArrayList<String>();
         frame = new JFrame("UI2");
         frame.setContentPane(mainFrame);
@@ -53,6 +56,8 @@ public class UI2 {
         chatPane.setSize(scrollPane.getWidth(), scrollPane.getHeight());
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        chatPane.setBackground(Color.darkGray);
+
 
         sendButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -86,20 +91,61 @@ public class UI2 {
                 }
             }
         });
+        scrollPane.setAutoscrolls(true);
+        chatPane.setAutoscrolls(true);
+
+
 
         frame.pack();
-        frame.setSize(400, 500);
+        frame.setSize(750, 400);
+        inputField.requestFocus();
         frame.setVisible(true);
     }
 
     public void addMessage(String message){
-        JXLabel tl = new JXLabel(message);
-        tl.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        //System.out.println(message);
+        String[] msg = message.split(":", 2);
+        JXLabel name = new JXLabel(msg[0]);
+        name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        name.setForeground(new Color(128, 117, 40));
+        name.setBackground(Color.darkGray.brighter().brighter().brighter());
+        name.setPreferredSize(new Dimension(0,0));
 
-        chatPane.add(tl);
+        JTextPane tl = new JTextPane();
+        tl.setText(msg[1]);
+        //tl.setLineWrap(true);
+        tl.setEditable(false);
+        tl.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
+        tl.setForeground(new Color(94, 128, 58));
+        tl.setBackground(chatPane.getBackground());
+        tl.setMaximumSize(new Dimension(chatPane.getWidth() - 10, 150));
+        tl.setPreferredSize(new Dimension(chatPane.getWidth() -10, 20));
+
+
+        JPanel jp = new JPanel();
+        jp.setMaximumSize(new Dimension(chatPane.getWidth(), chatPane.getHeight()));
+
+        jp.setLayout(new GridLayout(2,1));
+        jp.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        jp.setBackground(chatPane.getBackground());
+        jp.add(name);
+        jp.add(tl);
+
+
+        chatPane.add(jp);
+        chatPanels.add(jp);
+        chatNames.add(name);
         chatMessages.add(tl);
+
+
+        scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum() + 1);
+
         chatPane.updateUI();
-        //chatPane.repaint();
+
+    }
+
+    public static float toFloat(int i){
+        return (float)i;
     }
 
     public void sendData(String data){

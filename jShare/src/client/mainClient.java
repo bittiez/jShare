@@ -58,18 +58,11 @@ public class mainClient {
             inputReader inReader = new inputReader(ui2, in);
             Thread t = new Thread(inReader);
             t.start();
-            login LoginForm = new login();
-            LoginForm.pack();
-            LoginForm.setVisible(true);
-            boolean waiting = true;
-            while (waiting) {
-                if (!LoginForm.isVisible()) {
-                    out.writeBytes("{COMMAND}::{100}::{" + LoginForm.email + "}\n");
-                    out.flush();
-                    waiting = false;
-                }
+
+            out.writeBytes("{COMMAND}::{100}::{" + cui.userSettings[0] + "}\n");
+            out.flush();
+
             }
-        }
 
     }
 
