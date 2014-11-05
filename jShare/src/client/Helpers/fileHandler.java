@@ -13,8 +13,8 @@ import java.nio.file.Paths;
 public class fileHandler {
     public static void saveFile(String fileName, String fileData) {
         String filePath = fileName;
-        while(filePath.indexOf("/") == 0 || filePath.indexOf("\\") == 0)
-            filePath = Paths.get(filePath).toAbsolutePath().toString();
+        //while(filePath.indexOf("/") == 0 || filePath.indexOf("\\") == 0)
+        filePath = Paths.get(filePath).toAbsolutePath().toString();
         System.out.println(filePath);
         Writer writer = null;
 

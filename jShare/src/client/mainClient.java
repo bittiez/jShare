@@ -51,10 +51,11 @@ public class mainClient {
         }
 
         if(running) {
-            UI2 ui2 = new UI2();
+            UI2 ui2 = new UI2(clientSocket, out, in);
 
-            gui mainGui = new gui(clientSocket, out, in);
-            inputReader inReader = new inputReader(mainGui, in);
+            //gui mainGui = new gui(clientSocket, out, in);
+
+            inputReader inReader = new inputReader(ui2, in);
             Thread t = new Thread(inReader);
             t.start();
             login LoginForm = new login();
