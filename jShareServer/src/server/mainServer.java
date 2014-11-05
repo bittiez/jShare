@@ -30,6 +30,7 @@ public class mainServer {
         }
         serverSocket.close();
 
+
     }
 
     public static void sendToAll(threadServer ts, clientListManager cm, String data){

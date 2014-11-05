@@ -9,6 +9,14 @@ public class couldNotConnect extends JDialog {
     private JButton buttonOK;
 
     public couldNotConnect() {
+        start();
+    }
+    public couldNotConnect(Exception e){
+        System.out.println(e.getMessage());
+        start();
+    }
+
+    private void start(){
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -22,6 +30,7 @@ public class couldNotConnect extends JDialog {
         this.pack();
         this.setVisible(true);
     }
+
 
     private void onOK() {
 // add your code here
