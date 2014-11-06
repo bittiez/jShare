@@ -43,7 +43,7 @@ public class mainClient {
             inputReader inReader = new inputReader(ui2, con.in);
             new Thread(inReader).start();
 
-            userLogin ul = new userLogin(con, cui.userSettings[0], "");
+            userLogin ul = new userLogin(con, cui.userSettings[0], "--");
             if(!ul.loginV1())
             {
                 ui2.frame.setVisible(false);

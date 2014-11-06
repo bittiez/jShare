@@ -62,6 +62,7 @@ public class threadServer extends Thread{
                     case LOGIN:
                         this.email = recieved.message;
                         //sendData("Logged in as " + this.email);
+                        mainServer.log(this.address + ": Logged in with " + this.email);
                         mainServer.sendToAll(this, clientManager, "Connected to the server");
                         break;
                 }

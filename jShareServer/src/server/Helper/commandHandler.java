@@ -1,5 +1,7 @@
 package server.Helper;
 
+import server.mainServer;
+
 /**
  * Created by tad on 10/28/14.
  */
@@ -16,12 +18,15 @@ public class commandHandler {
             commandSplit = data.split("::");
             commandNum = removeBrackets(commandSplit[1]);
             if(commandSplit.length > 2){
-                if(commandSplit[2].indexOf("|") != -1)
-                    commandParams = removeBrackets(commandSplit[2]).split("|");
+                String params = removeBrackets(commandSplit[2]);
+                if(commandSplit[2].contains("|")) {
+                    commandParams = params.split("\\|");
+                }
                 else{
                     commandParams = new String[1];
-                    commandParams[0] = removeBrackets(commandSplit[2]);
+                    commandParams[0] = params;
                 }
+
                 if(commandSplit.length > 3){
                     commandOther = commandSplit[3];
                 }
