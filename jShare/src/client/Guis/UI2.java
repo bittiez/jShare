@@ -1,11 +1,12 @@
 package client.Guis;
 
+import client.Design.uScrollBar;
+import client.Helpers.SmartScroller;
 import client.mainClient;
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+
 import static client.staticClasses.staticColors.*;
 
 /**
@@ -35,6 +37,7 @@ public class UI2 {
     private ArrayList<JXLabel> chatNames = null;
     private ArrayList<String> chatHistory = null;
     private int lastChatHistoryRequested = 0;
+    public String email = "";
 
     private Socket connection;
     private DataOutputStream con_out;
@@ -106,8 +109,9 @@ public class UI2 {
             }
         });
         scrollPane.setAutoscrolls(true);
-        chatPane.setAutoscrolls(true);
-
+        new SmartScroller(scrollPane);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUI(new uScrollBar());
 
 
         frame.pack();
@@ -146,15 +150,24 @@ public class UI2 {
         jp.add(tl);
 
 
+        if(msg[0].trim().toLowerCase().equals(this.email.trim().toLowerCase())){
+            name.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+            tl.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+            jp.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+        }
+
+
         chatPane.add(jp);
         chatPanels.add(jp);
         chatNames.add(name);
         chatMessages.add(tl);
 
-
-        scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum() + 1);
+        //int sp = scrollPane.getVerticalScrollBar().getMaximum();
+        //scrollPane.getVerticalScrollBar().setValue(sp);
 
         chatPane.updateUI();
+
+
 
     }
 

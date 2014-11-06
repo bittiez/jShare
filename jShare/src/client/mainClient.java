@@ -44,6 +44,7 @@ public class mainClient {
             new Thread(inReader).start();
 
             userLogin ul = new userLogin(con, cui.userSettings[0], "--");
+            ui2.email = cui.userSettings[0];
             if(!ul.loginV1())
             {
                 ui2.frame.setVisible(false);

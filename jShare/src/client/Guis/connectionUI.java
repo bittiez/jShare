@@ -4,6 +4,7 @@ import client.Helpers.fileHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
@@ -92,6 +93,7 @@ public class connectionUI {
         connectButton.setBackground(uButtonColor);
         connectButton.setForeground(white);
         connectButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
+        connectButton.setPreferredSize(new Dimension(frame.getWidth() - 15, 45));
 
         frame.pack();
         frame.setSize(300, 300);

@@ -1,7 +1,9 @@
-package server;
+package server.Threads;
 
 import server.Helper.commandHandler;
 import server.Helper.commandReturn;
+import server.clientListManager;
+import server.mainServer;
 
 import java.io.*;
 import java.net.Socket;
