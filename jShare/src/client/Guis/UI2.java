@@ -5,6 +5,7 @@ import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,6 +16,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import static client.staticClasses.staticColors.*;
 
 /**
  * Created by tad on 11/4/14.
@@ -56,7 +58,19 @@ public class UI2 {
         chatPane.setSize(scrollPane.getWidth(), scrollPane.getHeight());
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        chatPane.setBackground(Color.darkGray);
+
+        chatPane.setBackground(uOrangeLight);
+        chatPane.setForeground(white);
+        chatPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        mainFrame.setBackground(uOrangeLight);
+        botPanel.setBackground(uOrangeLight);
+        inputField.setBackground(uOrange);
+        inputField.setForeground(white);
+        inputField.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
+        sendButton.setBackground(uOrange);
+        sendButton.setForeground(white);
+        sendButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
 
 
         sendButton.addMouseListener(new MouseAdapter() {
@@ -107,8 +121,8 @@ public class UI2 {
         String[] msg = message.split(":", 2);
         JXLabel name = new JXLabel(msg[0]);
         name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        name.setForeground(new Color(128, 117, 40));
-        name.setBackground(Color.darkGray.brighter().brighter().brighter());
+        name.setForeground(white);
+        name.setBackground(uOrange);
         name.setPreferredSize(new Dimension(0,0));
 
         JTextPane tl = new JTextPane();
@@ -116,7 +130,7 @@ public class UI2 {
         //tl.setLineWrap(true);
         tl.setEditable(false);
         tl.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
-        tl.setForeground(new Color(94, 128, 58));
+        tl.setForeground(white);
         tl.setBackground(chatPane.getBackground());
         tl.setMaximumSize(new Dimension(chatPane.getWidth() - 10, 150));
         tl.setPreferredSize(new Dimension(chatPane.getWidth() -10, 20));

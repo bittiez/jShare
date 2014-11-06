@@ -4,7 +4,6 @@ import client.Helpers.fileHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
@@ -12,6 +11,8 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static client.staticClasses.staticColors.*;
 
 /**
  * Created by tad on 11/3/14.
@@ -60,12 +61,6 @@ public class connectionUI {
 
             }
 
-
-        Color uOrange = Color.decode("#DD4814");
-        Color uOrangeLight = Color.decode("#E05A2B");
-        Color uPurple = Color.decode("#EEA389");
-        Color uButtonColor = Color.decode("#DD4814").darker();
-        Color white = Color.white;
 
         mainPanel.setBackground(uOrangeLight);
         topPanel.setBackground(uOrangeLight);
