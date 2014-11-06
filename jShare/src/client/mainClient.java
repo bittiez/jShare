@@ -5,6 +5,7 @@ import client.Dialogs.login;
 import client.Guis.UI2;
 import client.Guis.connectionUI;
 import client.Guis.gui;
+import client.Helpers.socketConnection;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -18,49 +19,30 @@ import java.net.SocketAddress;
 public class mainClient {
     public static void main(String args[]) throws Exception {
         boolean running = true;
-        Socket clientSocket = null;
-        DataOutputStream out = null;
-        BufferedReader in = null;
-        String[] connectionInfo = new String[2];
+
         connectionUI cui = new connectionUI();
 
-        boolean connectionWaitin = true;
-        while(connectionWaitin){
+        while(true){
             Thread.sleep(1000);
-            //log("Checking response: " + cui.connection[0]);
             if(!cui.frame.isVisible() || (cui.connection[0] != "" && cui.connection[0] != null)){
-                connectionInfo = cui.connection;
-                connectionWaitin = false;
                 break;
             }
         }
-        log("Trying to connect..");
-        try {
-            clientSocket = new Socket();
-            InetAddress addr = InetAddress.getByName(connectionInfo[0]);
-            SocketAddress sockaddr = new InetSocketAddress(addr, Integer.parseInt(connectionInfo[1]));
-            clientSocket.connect(sockaddr, 2000); // 20 seconds time out
 
-
-            //clientSocket = new Socket(connectionInfo[0], Integer.parseInt(connectionInfo[1]));
-            out = new DataOutputStream(clientSocket.getOutputStream());
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        } catch (Exception err){
+        socketConnection con = new socketConnection(cui.connection[0], cui.connection[1]);
+        
+        if(!con.openConnection())
             running = false;
-            new couldNotConnect(err);
-        }
 
         if(running) {
-            UI2 ui2 = new UI2(clientSocket, out, in);
+            UI2 ui2 = new UI2(con.clientSocket, con.out, con.in);
 
-            //gui mainGui = new gui(clientSocket, out, in);
-
-            inputReader inReader = new inputReader(ui2, in);
+            inputReader inReader = new inputReader(ui2, con.in);
             Thread t = new Thread(inReader);
             t.start();
 
-            out.writeBytes("{COMMAND}::{100}::{" + cui.userSettings[0] + "}\n");
-            out.flush();
+            con.out.writeBytes("{COMMAND}::{100}::{" + cui.userSettings[0] + "}\n");
+            con.out.flush();
 
             }
 

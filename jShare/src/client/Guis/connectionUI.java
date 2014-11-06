@@ -3,6 +3,10 @@ package client.Guis;
 import client.Helpers.fileHandler;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -20,6 +24,14 @@ public class connectionUI {
     private JTextField userEmail;
     private JPanel topPanel;
     private JPanel botPanel;
+    private JPanel email;
+    private JPanel server;
+    private JPanel port;
+    private JLabel labelEmail;
+    private JLabel labelConection;
+    private JLabel labelServer;
+    private JLabel labelPort;
+    private JLabel labelUserSettings;
     public String[] connection = new String[2];
     public String[] userSettings = new String[2];
     public  JFrame frame = null;
@@ -28,7 +40,7 @@ public class connectionUI {
     public connectionUI() {
         frame = new JFrame("Connection Settings");
         frame.setContentPane(mainPanel);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Get settings if there is a settings file
         String settings = fileHandler.readFile("config.jShare");
@@ -49,8 +61,45 @@ public class connectionUI {
             }
 
 
+        Color uOrange = Color.decode("#DD4814");
+        Color uOrangeLight = Color.decode("#E05A2B");
+        Color uPurple = Color.decode("#EEA389");
+        Color uButtonColor = Color.decode("#DD4814").darker();
+        Color white = Color.white;
+
+        mainPanel.setBackground(uOrangeLight);
+        topPanel.setBackground(uOrangeLight);
+        botPanel.setBackground(uOrangeLight);
+
+        email.setBackground(uOrange);
+        server.setBackground(uOrange);
+        port.setBackground(uOrange);
+
+        serverAddress.setBackground(uOrange);
+        serverPort.setBackground(uOrange);
+        userEmail.setBackground(uOrange);
+
+        Border bord = BorderFactory.createEmptyBorder();
+
+        serverAddress.setBorder(bord);
+        serverPort.setBorder(bord);
+        userEmail.setBorder(bord);
+
+        labelConection.setForeground(white);
+        labelEmail.setForeground(white);
+        labelPort.setForeground(white);
+        labelServer.setForeground(white);
+        labelUserSettings.setForeground(white);
+        serverAddress.setForeground(uPurple);
+        serverPort.setForeground(uPurple);
+        userEmail.setForeground(uPurple);
+
+        connectButton.setBackground(uButtonColor);
+        connectButton.setForeground(white);
+        connectButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
+
         frame.pack();
-        frame.setSize(400, 300);
+        frame.setSize(300, 300);
         frame.setLocation(-1,-1);
         frame.setVisible(true);
         connectButton.addMouseListener(new MouseAdapter() {
@@ -74,10 +123,30 @@ public class connectionUI {
 
                     fileHandler.saveFile("config.jShare", sb.toString());
 
-
+                    connectButton.requestFocus();
                     frame.setVisible(false);
                     frame.dispose();
                 }
+            }
+        });
+
+
+        userEmail.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                userEmail.selectAll();
+            }
+        });
+        serverPort.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                serverPort.selectAll();
+            }
+        });
+        serverAddress.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                serverAddress.selectAll();
             }
         });
     }
