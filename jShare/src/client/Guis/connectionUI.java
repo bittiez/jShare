@@ -97,7 +97,8 @@ public class connectionUI {
 
         frame.pack();
         frame.setSize(300, 300);
-        frame.setLocation(-1,-1);
+        frame.setLocationRelativeTo(null);
+
         frame.setVisible(true);
         connectButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

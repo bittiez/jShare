@@ -114,8 +114,10 @@ public class UI2 {
         scrollPane.getVerticalScrollBar().setUI(new uScrollBar());
 
 
+
         frame.pack();
         frame.setSize(750, 400);
+        frame.setLocationRelativeTo(null);
         inputField.requestFocus();
         frame.setVisible(true);
     }
