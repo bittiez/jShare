@@ -32,6 +32,7 @@ public class socketConnection {
             out = new DataOutputStream(clientSocket.getOutputStream());
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         } catch(Exception e){
+
             return false;
         }
         return true;

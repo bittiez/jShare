@@ -6,6 +6,7 @@ import client.Guis.UI2;
 import client.Guis.connectionUI;
 import client.Guis.gui;
 import client.Helpers.socketConnection;
+import client.Helpers.userLogin;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -30,21 +31,26 @@ public class mainClient {
         }
 
         socketConnection con = new socketConnection(cui.connection[0], cui.connection[1]);
-        
-        if(!con.openConnection())
+
+        if(!con.openConnection()) {
             running = false;
+            new  couldNotConnect();
+        }
 
         if(running) {
             UI2 ui2 = new UI2(con.clientSocket, con.out, con.in);
 
             inputReader inReader = new inputReader(ui2, con.in);
-            Thread t = new Thread(inReader);
-            t.start();
+            new Thread(inReader).start();
 
-            con.out.writeBytes("{COMMAND}::{100}::{" + cui.userSettings[0] + "}\n");
-            con.out.flush();
-
+            userLogin ul = new userLogin(con, cui.userSettings[0], "");
+            if(!ul.loginV1())
+            {
+                ui2.frame.setVisible(false);
+                ui2.frame.dispose();
+                mainClient.main(null);
             }
+        }
 
     }
 

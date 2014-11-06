@@ -26,7 +26,7 @@ public class UI2 {
     private JScrollPane scrollPane;
     private JTextField inputField;
     private JButton sendButton;
-    JFrame frame = null;
+    public JFrame frame = null;
 
     private ArrayList<JPanel> chatPanels = null;
     private ArrayList<JTextPane> chatMessages = null;
