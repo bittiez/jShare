@@ -67,6 +67,8 @@ public class threadServer extends Thread{
                         mainServer.log(this.address + ": Logged in with " + this.email);
                         mainServer.sendToAll(this, clientManager, "Connected to the server");
                         break;
+                    case PING:
+                        break;
                 }
             } catch (IOException e) {
                 e.printStackTrace();

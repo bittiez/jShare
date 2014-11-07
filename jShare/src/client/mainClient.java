@@ -7,6 +7,7 @@ import client.Guis.connectionUI;
 import client.Guis.gui;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
+import client.Threads.pingManager;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -18,7 +19,9 @@ import java.net.SocketAddress;
  * Created by tad on 10/26/14.
  */
 public class mainClient {
+    public static double Version =  0.8;
     public static void main(String args[]) throws Exception {
+
         boolean running = true;
 
         connectionUI cui = new connectionUI();
@@ -45,6 +48,10 @@ public class mainClient {
 
             userLogin ul = new userLogin(con, cui.userSettings[0], "--");
             ui2.email = cui.userSettings[0];
+
+            pingManager pm = new pingManager(con);
+            new Thread(pm).start();
+
             if(!ul.loginV1())
             {
                 ui2.frame.setVisible(false);

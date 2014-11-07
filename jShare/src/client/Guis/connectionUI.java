@@ -39,6 +39,7 @@ public class connectionUI {
     public  JFrame frame = null;
     private ArrayList<String> config = new ArrayList<String>();
 
+
     public connectionUI() {
         frame = new JFrame("Connection Settings");
         frame.setContentPane(mainPanel);
@@ -48,21 +49,85 @@ public class connectionUI {
         String settings = fileHandler.readFile("config.jShare");
         if(!settings.isEmpty()){
             Matcher m = Pattern.compile("\\{([^}]+)\\}").matcher(settings);
-            //"\\(([^)]+)\\)"
-            int i = 0;
             while(m.find()) {
                 config.add(m.group(1));
-                i++;
             }
+                String[] addresses = null, ports = null;
+                if(config.get(0).contains("\\|"))
+                    addresses = config.get(0).split("\\|");
+                if(config.get(1).contains("\\|"))
+                    ports = config.get(1).split("\\|");
 
-                serverAddress.setText(config.get(0));
-                serverPort.setText(config.get(1));
+
+                serverAddress.setText(addresses == null ? config.get(0) : addresses[0]);
+                serverPort.setText(ports == null ? config.get(1) : ports[0]);
                 if(config.size() > 2)
                     userEmail.setText(config.get(2));
 
             }
 
 
+        setThemeDark();
+
+        connectButton.setPreferredSize(new Dimension(frame.getWidth() - 15, 45));
+
+        frame.pack();
+        frame.setSize(300, 300);
+        frame.setLocationRelativeTo(null);
+
+        frame.setVisible(true);
+        connectButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    connection[0] = serverAddress.getText();
+                    connection[1] = serverPort.getText();
+                    userSettings[0] = userEmail.getText();
+
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("{");
+                    sb.append(serverAddress.getText());
+                    sb.append("}");
+                    sb.append("{");
+                    sb.append(serverPort.getText());
+                    sb.append("}");
+                    sb.append("{");
+                    sb.append(userEmail.getText());
+                    sb.append("}");
+
+
+                    fileHandler.saveFile("config.jShare", sb.toString());
+
+                    connectButton.requestFocus();
+                    frame.setVisible(false);
+                    frame.dispose();
+                }
+            }
+        });
+
+
+
+
+        userEmail.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                userEmail.selectAll();
+            }
+        });
+        serverPort.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                serverPort.selectAll();
+            }
+        });
+        serverAddress.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                serverAddress.selectAll();
+            }
+        });
+    }
+    public void setThemeuOrange(){
         mainPanel.setBackground(uOrangeLight);
         topPanel.setBackground(uOrangeLight);
         botPanel.setBackground(uOrangeLight);
@@ -93,60 +158,38 @@ public class connectionUI {
         connectButton.setBackground(uButtonColor);
         connectButton.setForeground(white);
         connectButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
-        connectButton.setPreferredSize(new Dimension(frame.getWidth() - 15, 45));
+    }
+    public void setThemeDark(){
+        mainPanel.setBackground(DarkBG);
+        topPanel.setBackground(DarkBG);
+        botPanel.setBackground(DarkBG);
 
-        frame.pack();
-        frame.setSize(300, 300);
-        frame.setLocationRelativeTo(null);
+        email.setBackground(DarkFields);
+        server.setBackground(DarkFields);
+        port.setBackground(DarkFields);
 
-        frame.setVisible(true);
-        connectButton.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON1) {
-                    connection[0] = serverAddress.getText();
-                    connection[1] = serverPort.getText();
-                    userSettings[0] = userEmail.getText();
+        serverAddress.setBackground(DarkFields);
+        serverPort.setBackground(DarkFields);
+        userEmail.setBackground(DarkFields);
 
+        Border bord = BorderFactory.createEmptyBorder();
 
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("{");
-                    sb.append(serverAddress.getText());
-                    sb.append("}");
-                    sb.append("{");
-                    sb.append(serverPort.getText());
-                    sb.append("}");
-                    sb.append("{");
-                    sb.append(userEmail.getText());
-                    sb.append("}");
+        serverAddress.setBorder(bord);
+        serverPort.setBorder(bord);
+        userEmail.setBorder(bord);
 
-                    fileHandler.saveFile("config.jShare", sb.toString());
+        labelConection.setForeground(DarkMainText);
+        labelEmail.setForeground(DarkMainText);
+        labelPort.setForeground(DarkMainText);
+        labelServer.setForeground(DarkMainText);
+        labelUserSettings.setForeground(DarkMainText);
+        serverAddress.setForeground(DarkSecondaryText);
+        serverPort.setForeground(DarkSecondaryText);
+        userEmail.setForeground(DarkSecondaryText);
 
-                    connectButton.requestFocus();
-                    frame.setVisible(false);
-                    frame.dispose();
-                }
-            }
-        });
-
-
-        userEmail.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                userEmail.selectAll();
-            }
-        });
-        serverPort.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                serverPort.selectAll();
-            }
-        });
-        serverAddress.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                serverAddress.selectAll();
-            }
-        });
+        connectButton.setBackground(DarkButton);
+        connectButton.setForeground(DarkMainText);
+        connectButton.setBorder(BorderFactory.createLineBorder(DarkBG.darker()));
     }
 
 }

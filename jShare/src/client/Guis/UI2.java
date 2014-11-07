@@ -2,6 +2,7 @@ package client.Guis;
 
 import client.Design.uScrollBar;
 import client.Helpers.SmartScroller;
+import client.Helpers.avatar;
 import client.mainClient;
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
@@ -39,9 +40,15 @@ public class UI2 {
     private int lastChatHistoryRequested = 0;
     public String email = "";
 
+    public ArrayList<String> avatarEmails = new ArrayList<String>();
+    public ArrayList<avatar> avatars = new ArrayList<avatar>();
+
     private Socket connection;
     private DataOutputStream con_out;
     private BufferedReader con_in;
+
+    private Color BG = null;
+    private Color TEXT = null;
 
 
     public UI2(Socket sock, DataOutputStream output, final BufferedReader input) {
@@ -105,6 +112,14 @@ public class UI2 {
                         inputField.setText(chatHistory.get((chatHistory.size() - lastChatHistoryRequested )-1));
                         lastChatHistoryRequested++;
                     }
+                } else if(keyEvent.getKeyCode() == KeyEvent.VK_DOWN){
+                    if(chatHistory.size() > 0){
+                        inputField.setText(chatHistory.get((chatHistory.size() - lastChatHistoryRequested )-1));
+                        if(lastChatHistoryRequested < 1)
+                            lastChatHistoryRequested = 0;
+                        else
+                            lastChatHistoryRequested--;
+                    }
                 }
             }
         });
@@ -123,17 +138,14 @@ public class UI2 {
     }
 
     public void addMessage(String message){
-        //System.out.println(message);
         String[] msg = message.split(":", 2);
         JXLabel name = new JXLabel(msg[0]);
         name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         name.setForeground(white);
         name.setBackground(uOrange);
-        name.setPreferredSize(new Dimension(0,0));
 
         JTextPane tl = new JTextPane();
         tl.setText(msg[1]);
-        //tl.setLineWrap(true);
         tl.setEditable(false);
         tl.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
         tl.setForeground(white);
@@ -145,15 +157,23 @@ public class UI2 {
         JPanel jp = new JPanel();
         jp.setMaximumSize(new Dimension(chatPane.getWidth(), chatPane.getHeight()));
 
+
+        JXLabel avat = new JXLabel(avatarManager(msg[0]));
+        JPanel na = new JPanel();
+        na.setLayout(new FlowLayout(FlowLayout.LEFT) );
+        na.setBackground(chatPane.getBackground());
+        na.add(avat);
+        na.add(name);
+
         jp.setLayout(new GridLayout(2,1));
-        jp.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         jp.setBackground(chatPane.getBackground());
-        jp.add(name);
+        jp.add(na);
         jp.add(tl);
 
 
         if(msg[0].trim().toLowerCase().equals(this.email.trim().toLowerCase())){
             name.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+            name.setForeground(unameColor);
             tl.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
             jp.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         }
@@ -161,16 +181,32 @@ public class UI2 {
 
         chatPane.add(jp);
         chatPanels.add(jp);
+        chatPanels.add(na);
         chatNames.add(name);
+        chatNames.add(avat);
         chatMessages.add(tl);
 
         //int sp = scrollPane.getVerticalScrollBar().getMaximum();
         //scrollPane.getVerticalScrollBar().setValue(sp);
 
         chatPane.updateUI();
+    }
 
+    public void setThemeuOrange(){
+        BG = uOrangeLight;
+    }
 
+    public ImageIcon avatarManager(String email){
 
+        int i = avatarEmails.indexOf(email);
+        if(i != -1){
+            return avatars.get(i)._image;
+        } else {
+            avatar a = new avatar(email);
+            avatarEmails.add(email);
+            avatars.add(a);
+            return a._image;
+        }
     }
 
     public static float toFloat(int i){
@@ -184,6 +220,7 @@ public class UI2 {
         } catch (IOException e) {
             //running = false;
             mainClient.log("Error while trying to send data. Closing connection.");
+            System.exit(0);
         }
     }
     public void recData(String data){

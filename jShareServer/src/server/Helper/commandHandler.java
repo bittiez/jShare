@@ -38,6 +38,9 @@ public class commandHandler {
                     RETURN.TYPE = commandType.LOGIN;
                     RETURN.message = commandParams[0];
                     break;
+                case 101:
+                    RETURN.TYPE = commandType.PING;
+                    break;
                 default:
                     RETURN.TYPE = commandType.MESSAGE;
                     RETURN.message=commandParams[0];
