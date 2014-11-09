@@ -82,6 +82,22 @@ public class UI2 {
         sendButton.setForeground(white);
         sendButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
 
+        MenuBar menuBar = new MenuBar();
+
+        Menu fileMenu = new Menu();
+        fileMenu.setLabel("File");
+        fileMenu.add(new MenuItem("Exit"));
+        menuBar.add(fileMenu);
+
+        Menu themeMenu = new Menu();
+        themeMenu.setLabel("Themes");
+        themeMenu.add(new MenuItem("uOrange"));
+        themeMenu.add(new MenuItem("Dark"));
+        menuBar.add(themeMenu);
+        frame.setMenuBar(menuBar);
+
+
+
 
         sendButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -209,16 +225,11 @@ public class UI2 {
         }
     }
 
-    public static float toFloat(int i){
-        return (float)i;
-    }
-
     public void sendData(String data){
         try {
             con_out.writeBytes(data + "\n");
             con_out.flush();
         } catch (IOException e) {
-            //running = false;
             mainClient.log("Error while trying to send data. Closing connection.");
             System.exit(0);
         }

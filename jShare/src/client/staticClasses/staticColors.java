@@ -16,7 +16,7 @@ public class staticColors {
     public static Color DarkBG = Color.decode("#27262A");
     public static Color DarkFields = Color.decode("#3F3C44");
     public static Color DarkMainText = Color.decode("#646357");
-    public static Color DarkSecondaryText = Color.decode("#4E4D45");
+    public static Color DarkSecondaryText = Color.decode("#4E4D45").brighter();
     public static Color DarkButton = DarkBG.darker();
 
 }

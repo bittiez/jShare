@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="jShare:jar2" />
+      <artifact name="jShare:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f03954f0-59d1-4bdb-985d-39dfa0b1b633" name="Default" comment="" />
     <ignored path="jShare.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,69 +70,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="mainClient.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="mainClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/mainClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="1062">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1062">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inputReader.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="inputReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/inputReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+            <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="720">
               <caret line="11" column="44" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="staticColors.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="staticColors.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/staticClasses/staticColors.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
-              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="504">
+              <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UI2.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UI2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/Guis/UI2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7766749" vertical-offset="3143" max-vertical-offset="4464">
-              <caret line="194" column="34" selection-start-line="194" selection-start-column="34" selection-end-line="194" selection-end-column="34" />
+            <state vertical-scroll-proportion="1.0024813" vertical-offset="1360" max-vertical-offset="4590">
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1220#1228#0" expanded="true" />
-                <element signature="e#1284#1292#0" expanded="true" />
-                <element signature="e#6587#6588#0" expanded="true" />
-                <element signature="e#6957#6958#0" expanded="true" />
-                <element signature="e#6988#6989#0" expanded="true" />
-                <element signature="e#7347#7348#0" expanded="true" />
-                <element signature="e#7379#7380#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connectionUI.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="connectionUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/Guis/connectionUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="929" max-vertical-offset="2268">
-              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1559" max-vertical-offset="1962">
+              <caret line="102" column="30" selection-start-line="102" selection-start-column="29" selection-end-line="102" selection-end-column="30" />
               <folding>
-                <element signature="e#2476#3476#0" expanded="true" />
-                <element signature="e#3465#3466#0" expanded="true" />
-                <element signature="e#3518#3675#0" expanded="true" />
-                <element signature="e#3664#3665#0" expanded="true" />
-                <element signature="e#3714#3872#0" expanded="true" />
-                <element signature="e#3861#3862#0" expanded="true" />
-                <element signature="e#3914#4075#0" expanded="true" />
-                <element signature="e#4064#4065#0" expanded="true" />
                 <element signature="method#setThemeuOrange#0;class#connectionUI#0" expanded="false" />
                 <element signature="method#setThemeDark#0;class#connectionUI#0" expanded="false" />
               </folding>
@@ -138,7 +125,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UI2.form" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="UI2.form" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/Guis/UI2.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
@@ -153,44 +140,17 @@
     </FindUsagesManager>
   </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/client/mainGui.form" />
-        <option value="$PROJECT_DIR$/src/client/mainGui.java" />
-        <option value="$PROJECT_DIR$/src/client/login.form" />
-        <option value="$PROJECT_DIR$/src/client/gui.form" />
-        <option value="$PROJECT_DIR$/src/client/login.java" />
-        <option value="$PROJECT_DIR$/src/client/gui.java" />
-        <option value="$PROJECT_DIR$/src/client/Dialogs/couldNotConnect.form" />
-        <option value="$PROJECT_DIR$/src/client/Guis/gui2.form" />
-        <option value="$PROJECT_DIR$/src/client/Guis/gui2.java" />
-        <option value="$PROJECT_DIR$/src/client/Guis/gui.java" />
-        <option value="$PROJECT_DIR$/src/client/Guis/gui.form" />
-        <option value="$PROJECT_DIR$/src/client/Guis/connectionDialog.form" />
-        <option value="$PROJECT_DIR$/src/client/Guis/connectionWindow.form" />
-        <option value="$PROJECT_DIR$/src/client/Dialogs/couldNotConnect.java" />
-        <option value="$PROJECT_DIR$/src/client/Guis/UI2.form" />
-        <option value="$PROJECT_DIR$/src/client/inputReader.java" />
-        <option value="$PROJECT_DIR$/src/client/Helpers/fileHandler.java" />
-        <option value="$PROJECT_DIR$/src/client/Guis/connectionUI.form" />
-        <option value="$PROJECT_DIR$/src/client/Helpers/socketConnection.java" />
-        <option value="$PROJECT_DIR$/src/client/Helpers/userLogin.java" />
-        <option value="$PROJECT_DIR$/src/client/Design/uScrollBar.java" />
-        <option value="$PROJECT_DIR$/src/client/Helpers/SmartScroller.java" />
-        <option value="$PROJECT_DIR$/src/client/jgravatar/Gravatar.java" />
-        <option value="$PROJECT_DIR$/src/client/Helpers/avatar.java" />
-        <option value="$PROJECT_DIR$/src/client/mainClient.java" />
         <option value="$PROJECT_DIR$/src/client/Threads/pingManager.java" />
         <option value="$PROJECT_DIR$/src/client/staticClasses/staticColors.java" />
-        <option value="$PROJECT_DIR$/src/client/Guis/connectionUI.java" />
         <option value="$PROJECT_DIR$/src/client/Guis/UI2.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="width" value="1368" />
-    <option name="height" value="744" />
+    <option name="width" value="1366" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -356,10 +316,10 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tTorrent" />
     <property name="last.edited.regexp" value="" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
   </component>
@@ -375,6 +335,7 @@
   </component>
   <component name="RunManager" selected="Application.mainClient">
     <configuration default="false" name="mainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="client.mainClient" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
@@ -445,6 +406,7 @@
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -472,6 +434,7 @@
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
@@ -486,6 +449,7 @@
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -551,38 +515,39 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="f03954f0-59d1-4bdb-985d-39dfa0b1b633" name="Default" comment="" />
       <created>1414315229636</created>
+      <option name="number" value="Default" />
       <updated>1414315229636</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1366" height="743" extended-state="1" />
+    <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="false" weight="0.2057101" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="24" y="36" width="273" height="707" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="false" weight="0.2057101" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="24" y="36" width="273" height="707" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869694" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869694" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286385" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24853373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32707354" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -626,11 +591,13 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="4" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -884,7 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6426799" vertical-offset="821" max-vertical-offset="1440">
           <caret line="63" column="57" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,15 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1152">
           <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#321#456#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#1100#1101#0" expanded="true" />
-            <element signature="e#1124#1125#0" expanded="true" />
-            <element signature="e#1201#1202#0" expanded="true" />
-            <element signature="e#1225#1226#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,7 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.1612903" vertical-offset="702" max-vertical-offset="2232">
           <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13399504" vertical-offset="0" max-vertical-offset="2232">
           <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -938,9 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49131513" vertical-offset="72" max-vertical-offset="576">
           <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -948,19 +900,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.089330025" vertical-offset="0" max-vertical-offset="486">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Guis/UI2.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/mainClient.java">
+    <entry file="file://$PROJECT_DIR$/src/client/staticClasses/staticColors.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="1062">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+          <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
           <folding />
         </state>
       </provider>
@@ -973,38 +919,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Threads/pingManager.java">
+    <entry file="file://$PROJECT_DIR$/src/client/mainClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.91067" vertical-offset="47" max-vertical-offset="576">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <element signature="e#235#236#0" expanded="true" />
-            <element signature="e#267#268#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/staticClasses/staticColors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
-          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1062">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Threads/pingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20588236" vertical-offset="0" max-vertical-offset="612">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Guis/UI2.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Guis/connectionUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="929" max-vertical-offset="2268">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="1962">
+          <caret line="102" column="30" selection-start-line="102" selection-start-column="29" selection-end-line="102" selection-end-column="30" />
           <folding>
-            <element signature="e#2476#3476#0" expanded="true" />
-            <element signature="e#3465#3466#0" expanded="true" />
-            <element signature="e#3518#3675#0" expanded="true" />
-            <element signature="e#3664#3665#0" expanded="true" />
-            <element signature="e#3714#3872#0" expanded="true" />
-            <element signature="e#3861#3862#0" expanded="true" />
-            <element signature="e#3914#4075#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
             <element signature="method#setThemeuOrange#0;class#connectionUI#0" expanded="false" />
             <element signature="method#setThemeDark#0;class#connectionUI#0" expanded="false" />
           </folding>
@@ -1013,17 +953,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Guis/UI2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7766749" vertical-offset="3143" max-vertical-offset="4464">
-          <caret line="194" column="34" selection-start-line="194" selection-start-column="34" selection-end-line="194" selection-end-column="34" />
+        <state vertical-scroll-proportion="1.0024813" vertical-offset="1360" max-vertical-offset="4590">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1220#1228#0" expanded="true" />
-            <element signature="e#1284#1292#0" expanded="true" />
-            <element signature="e#6587#6588#0" expanded="true" />
-            <element signature="e#6957#6958#0" expanded="true" />
-            <element signature="e#6988#6989#0" expanded="true" />
-            <element signature="e#7347#7348#0" expanded="true" />
-            <element signature="e#7379#7380#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1120,4 +1053,3 @@
     </states>
   </component>
 </project>
-
