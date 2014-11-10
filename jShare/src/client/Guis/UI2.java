@@ -47,8 +47,7 @@ public class UI2 {
     private DataOutputStream con_out;
     private BufferedReader con_in;
 
-    private Color BG = null;
-    private Color TEXT = null;
+
 
 
     public UI2(Socket sock, DataOutputStream output, final BufferedReader input) {
@@ -208,9 +207,6 @@ public class UI2 {
         chatPane.updateUI();
     }
 
-    public void setThemeuOrange(){
-        BG = uOrangeLight;
-    }
 
     public ImageIcon avatarManager(String email){
 

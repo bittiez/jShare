@@ -1,24 +1,43 @@
 package server;
 
+import server.Helper.fileHandler;
 import server.Threads.loginCounter;
 import server.Threads.threadServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by tad on 10/26/14.
  */
 public class mainServer {
     public static void main(String[] args) throws IOException {
-        //loginCounter userLogger = new loginCounter();
+
+        ArrayList<String> config = new ArrayList<String>();
+        
+        String settings = fileHandler.readFile("config.jChat");
+        if(!settings.isEmpty()){
+            Matcher m = Pattern.compile("\\{([^}]+)\\}").matcher(settings);
+            while(m.find()) {
+                config.add(m.group(1));
+            }
+        } else {
+            config.add("25984");
+            fileHandler.saveFile("config.jChat", "{25984}");
+        }
+
+
+
         clientListManager clientManager = new clientListManager();
         ServerSocket serverSocket = null;
 
         boolean listeningSocket = true;
         try {
-            serverSocket = new ServerSocket(2343);
+            serverSocket = new ServerSocket(Integer.parseInt(config.get(0)));
             log("Server listening on: " + serverSocket.getInetAddress().getHostAddress() + ":" + serverSocket.getLocalPort());
         } catch (IOException e) {
             System.err.println("Could not listen on port: " + serverSocket.getLocalPort());

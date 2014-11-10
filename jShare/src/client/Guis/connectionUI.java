@@ -44,6 +44,7 @@ public class connectionUI {
         frame = new JFrame("Connection Settings");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        serverPort.setText("25984");
 
         //Get settings if there is a settings file
         String settings = fileHandler.readFile("config.jShare");

@@ -89,6 +89,7 @@ public class threadServer extends Thread{
             this.connected = false;
             clientManager.remove(this);
             mainServer.log(address + " disconnected.");
+            mainServer.sendToAll(this, clientManager, "Disconnected");
             Thread.currentThread().interrupt();
         } catch (Exception e) {
             e.printStackTrace();

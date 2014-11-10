@@ -20,6 +20,7 @@ import java.net.SocketAddress;
  */
 public class mainClient {
     public static double Version =  0.8;
+
     public static void main(String args[]) throws Exception {
 
         boolean running = true;
