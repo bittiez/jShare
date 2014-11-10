@@ -1,10 +1,11 @@
 package client.Design;
 
+import client.Helpers.config;
+
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalScrollBarUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static client.staticClasses.staticColors.*;
 
 public  class uScrollBar extends MetalScrollBarUI {
 
@@ -15,10 +16,13 @@ public  class uScrollBar extends MetalScrollBarUI {
             return new Dimension(0, 0);
         }
     };
+    private config Config = null;
 
-    public uScrollBar () {
-        imageThumb = WrapImage .create(32, 32, uOrange);
-        imageTrack = WrapImage .create(32, 32, uOrangeLight);
+    public uScrollBar (config _Config) {
+        Config = _Config;
+        imageThumb = WrapImage .create(32, 32, Config._Theme.backGround);
+        imageTrack = WrapImage .create(32, 32, Config._Theme.inputFieldBackGround);
+
     }
 
     @Override

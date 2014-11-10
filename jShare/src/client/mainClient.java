@@ -44,7 +44,7 @@ public class mainClient {
         }
 
         if(running) {
-            UI2 ui2 = new UI2(con.clientSocket, con.out, con.in);
+            UI2 ui2 = new UI2(Config, con.out);
 
             inputReader inReader = new inputReader(ui2, con.in);
             new Thread(inReader).start();

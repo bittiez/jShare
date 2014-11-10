@@ -3,6 +3,7 @@ package client.Guis;
 import client.Design.uScrollBar;
 import client.Helpers.SmartScroller;
 import client.Helpers.avatar;
+import client.Helpers.config;
 import client.mainClient;
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
@@ -13,13 +14,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 
-import static client.staticClasses.staticColors.*;
 
 /**
  * Created by tad on 11/4/14.
@@ -43,17 +41,14 @@ public class UI2 {
     public ArrayList<String> avatarEmails = new ArrayList<String>();
     public ArrayList<avatar> avatars = new ArrayList<avatar>();
 
-    private Socket connection;
     private DataOutputStream con_out;
-    private BufferedReader con_in;
+    private config Config= null;
 
 
 
-
-    public UI2(Socket sock, DataOutputStream output, final BufferedReader input) {
-        this.connection = sock;
+    public UI2(config _Config, DataOutputStream output) {
         this.con_out = output;
-        this.con_in = input;
+        Config = _Config;
 
         chatPanels = new ArrayList<JPanel>();
         chatMessages = new ArrayList<JTextPane>();
@@ -68,18 +63,25 @@ public class UI2 {
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        chatPane.setBackground(uOrangeLight);
-        chatPane.setForeground(white);
-        chatPane.setBorder(BorderFactory.createEmptyBorder());
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        mainFrame.setBackground(uOrangeLight);
-        botPanel.setBackground(uOrangeLight);
-        inputField.setBackground(uOrange);
-        inputField.setForeground(white);
-        inputField.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
-        sendButton.setBackground(uOrange);
-        sendButton.setForeground(white);
-        sendButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
+
+
+
+        chatPane.setBackground(Config._Theme.backGround);
+        mainFrame.setBackground(Config._Theme.backGround);
+        botPanel.setBackground(Config._Theme.backGround);
+        inputField.setBackground(Config._Theme.inputFieldBackGround);
+        sendButton.setBackground(Config._Theme.button);
+
+        chatPane.setForeground(Config._Theme.mainText);
+        inputField.setForeground(Config._Theme.secondaryText);
+        sendButton.setForeground(Config._Theme.mainText);
+
+        chatPane.setBorder(Config._Theme.border);
+        scrollPane.setBorder(Config._Theme.border);
+        inputField.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
+        sendButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
+
+
 
         MenuBar menuBar = new MenuBar();
 
@@ -141,7 +143,7 @@ public class UI2 {
         scrollPane.setAutoscrolls(true);
         new SmartScroller(scrollPane);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setUI(new uScrollBar());
+        scrollPane.getVerticalScrollBar().setUI(new uScrollBar(Config));
 
 
 
@@ -156,15 +158,15 @@ public class UI2 {
         String[] msg = message.split(":", 2);
         JXLabel name = new JXLabel(msg[0]);
         name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        name.setForeground(white);
-        name.setBackground(uOrange);
+        name.setForeground(Config._Theme.mainText);
+        //name.setBackground(Config._Theme.backGround);
 
         JTextPane tl = new JTextPane();
         tl.setText(msg[1]);
         tl.setEditable(false);
         tl.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
-        tl.setForeground(white);
-        tl.setBackground(chatPane.getBackground());
+        tl.setForeground(Config._Theme.mainText);
+        tl.setBackground(Config._Theme.backGround);
         tl.setMaximumSize(new Dimension(chatPane.getWidth() - 10, 150));
         tl.setPreferredSize(new Dimension(chatPane.getWidth() -10, 20));
 
@@ -176,7 +178,7 @@ public class UI2 {
         JXLabel avat = new JXLabel(avatarManager(msg[0]));
         JPanel na = new JPanel();
         na.setLayout(new FlowLayout(FlowLayout.LEFT) );
-        na.setBackground(chatPane.getBackground());
+        na.setBackground(Config._Theme.backGround);
         na.add(avat);
         na.add(name);
 
@@ -188,7 +190,7 @@ public class UI2 {
 
         if(msg[0].trim().toLowerCase().equals(this.email.trim().toLowerCase())){
             name.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
-            name.setForeground(unameColor);
+            name.setForeground(Config._Theme.userName);
             tl.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
             jp.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         }

@@ -1,6 +1,7 @@
 package client.Helpers;
 
 import client.Design.themeNames;
+import client.Design.themes;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class config {
     public String userEmail = "";
 
     public themeNames theme = themeNames.DarkTheme;
+    public themes _Theme = null;
 
     public config(){
         String settings = fileHandler.readFile("config.jShare");
@@ -45,6 +47,7 @@ public class config {
             if(config.size() > 3){
                 theme = themeNames.valueOf(config.get(3));
             }
+            _Theme = new themes(theme);
         }
 
     }

@@ -9,9 +9,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
-import static client.staticClasses.staticColors.*;
 
 /**
  * Created by tad on 11/3/14.
@@ -47,9 +44,9 @@ public class connectionUI {
         serverAddress.setText(Config.address);
         userEmail.setText(Config.userEmail);
 
-        setThemeDark();
+        setTheme();
 
-        connectButton.setPreferredSize(new Dimension(frame.getWidth() - 15, 45));
+        connectButton.setPreferredSize(new Dimension(frame.getWidth() - 15, 40));
 
         frame.pack();
         frame.setSize(300, 300);
@@ -96,69 +93,38 @@ public class connectionUI {
             }
         });
     }
-    public void setThemeuOrange(){
-        mainPanel.setBackground(uOrangeLight);
-        topPanel.setBackground(uOrangeLight);
-        botPanel.setBackground(uOrangeLight);
 
-        email.setBackground(uOrange);
-        server.setBackground(uOrange);
-        port.setBackground(uOrange);
+    public void setTheme(){
+        mainPanel.setBackground(Config._Theme.backGround);
+        topPanel.setBackground(Config._Theme.backGround);
+        botPanel.setBackground(Config._Theme.backGround);
 
-        serverAddress.setBackground(uOrange);
-        serverPort.setBackground(uOrange);
-        userEmail.setBackground(uOrange);
+        email.setBackground(Config._Theme.inputFieldBackGround);
+        server.setBackground(Config._Theme.inputFieldBackGround);
+        port.setBackground(Config._Theme.inputFieldBackGround);
 
-        Border bord = BorderFactory.createEmptyBorder();
+        serverAddress.setBackground(Config._Theme.inputFieldBackGround);
+        serverPort.setBackground(Config._Theme.inputFieldBackGround);
+        userEmail.setBackground(Config._Theme.inputFieldBackGround);
 
-        serverAddress.setBorder(bord);
-        serverPort.setBorder(bord);
-        userEmail.setBorder(bord);
-
-        labelConnection.setForeground(white);
-        labelEmail.setForeground(white);
-        labelPort.setForeground(white);
-        labelServer.setForeground(white);
-        labelUserSettings.setForeground(white);
-        serverAddress.setForeground(uPurple);
-        serverPort.setForeground(uPurple);
-        userEmail.setForeground(uPurple);
-
-        connectButton.setBackground(uButtonColor);
-        connectButton.setForeground(white);
-        connectButton.setBorder(BorderFactory.createLineBorder(uOrange.darker()));
-    }
-    public void setThemeDark(){
-        mainPanel.setBackground(DarkBG);
-        topPanel.setBackground(DarkBG);
-        botPanel.setBackground(DarkBG);
-
-        email.setBackground(DarkFields);
-        server.setBackground(DarkFields);
-        port.setBackground(DarkFields);
-
-        serverAddress.setBackground(DarkFields);
-        serverPort.setBackground(DarkFields);
-        userEmail.setBackground(DarkFields);
-
-        Border bord = BorderFactory.createEmptyBorder();
+        Border bord = Config._Theme.border;
 
         serverAddress.setBorder(bord);
         serverPort.setBorder(bord);
         userEmail.setBorder(bord);
 
-        labelConnection.setForeground(DarkMainText);
-        labelEmail.setForeground(DarkMainText);
-        labelPort.setForeground(DarkMainText);
-        labelServer.setForeground(DarkMainText);
-        labelUserSettings.setForeground(DarkMainText);
-        serverAddress.setForeground(DarkSecondaryText);
-        serverPort.setForeground(DarkSecondaryText);
-        userEmail.setForeground(DarkSecondaryText);
+        labelConnection.setForeground(Config._Theme.mainText);
+        labelEmail.setForeground(Config._Theme.mainText);
+        labelPort.setForeground(Config._Theme.mainText);
+        labelServer.setForeground(Config._Theme.mainText);
+        labelUserSettings.setForeground(Config._Theme.mainText);
+        serverAddress.setForeground(Config._Theme.secondaryText);
+        serverPort.setForeground(Config._Theme.secondaryText);
+        userEmail.setForeground(Config._Theme.secondaryText);
 
-        connectButton.setBackground(DarkButton);
-        connectButton.setForeground(DarkMainText);
-        connectButton.setBorder(BorderFactory.createLineBorder(DarkBG.darker()));
+        connectButton.setBackground(Config._Theme.button);
+        connectButton.setForeground(Config._Theme.mainText);
+        connectButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
     }
 
 }
