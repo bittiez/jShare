@@ -64,7 +64,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="4e48b" class="javax.swing.JLabel" binding="labelConection">
+          <component id="4e48b" class="javax.swing.JLabel" binding="labelConnection">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>

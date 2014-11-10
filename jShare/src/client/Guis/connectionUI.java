@@ -1,6 +1,6 @@
 package client.Guis;
 
-import client.Helpers.fileHandler;
+import client.Helpers.config;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,8 +10,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static client.staticClasses.staticColors.*;
 
@@ -30,43 +28,24 @@ public class connectionUI {
     private JPanel server;
     private JPanel port;
     private JLabel labelEmail;
-    private JLabel labelConection;
+    private JLabel labelConnection;
     private JLabel labelServer;
     private JLabel labelPort;
     private JLabel labelUserSettings;
     public String[] connection = new String[2];
     public String[] userSettings = new String[2];
     public  JFrame frame = null;
-    private ArrayList<String> config = new ArrayList<String>();
+    public config Config = null;
 
 
-    public connectionUI() {
+    public connectionUI(config _Config) {
+        Config=_Config;
         frame = new JFrame("Connection Settings");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        serverPort.setText("25984");
-
-        //Get settings if there is a settings file
-        String settings = fileHandler.readFile("config.jShare");
-        if(!settings.isEmpty()){
-            Matcher m = Pattern.compile("\\{([^}]+)\\}").matcher(settings);
-            while(m.find()) {
-                config.add(m.group(1));
-            }
-                String[] addresses = null, ports = null;
-                if(config.get(0).contains("\\|"))
-                    addresses = config.get(0).split("\\|");
-                if(config.get(1).contains("\\|"))
-                    ports = config.get(1).split("\\|");
-
-
-                serverAddress.setText(addresses == null ? config.get(0) : addresses[0]);
-                serverPort.setText(ports == null ? config.get(1) : ports[0]);
-                if(config.size() > 2)
-                    userEmail.setText(config.get(2));
-
-            }
-
+        serverPort.setText(Config.port);
+        serverAddress.setText(Config.address);
+        userEmail.setText(Config.userEmail);
 
         setThemeDark();
 
@@ -83,23 +62,12 @@ public class connectionUI {
                     connection[0] = serverAddress.getText();
                     connection[1] = serverPort.getText();
                     userSettings[0] = userEmail.getText();
+                    Config.address = connection[0];
+                    Config.port = connection[1];
+                    Config.userEmail = userSettings[0];
+                    Config.Save();
 
 
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("{");
-                    sb.append(serverAddress.getText());
-                    sb.append("}");
-                    sb.append("{");
-                    sb.append(serverPort.getText());
-                    sb.append("}");
-                    sb.append("{");
-                    sb.append(userEmail.getText());
-                    sb.append("}");
-
-
-                    fileHandler.saveFile("config.jShare", sb.toString());
-
-                    connectButton.requestFocus();
                     frame.setVisible(false);
                     frame.dispose();
                 }
@@ -147,7 +115,7 @@ public class connectionUI {
         serverPort.setBorder(bord);
         userEmail.setBorder(bord);
 
-        labelConection.setForeground(white);
+        labelConnection.setForeground(white);
         labelEmail.setForeground(white);
         labelPort.setForeground(white);
         labelServer.setForeground(white);
@@ -179,7 +147,7 @@ public class connectionUI {
         serverPort.setBorder(bord);
         userEmail.setBorder(bord);
 
-        labelConection.setForeground(DarkMainText);
+        labelConnection.setForeground(DarkMainText);
         labelEmail.setForeground(DarkMainText);
         labelPort.setForeground(DarkMainText);
         labelServer.setForeground(DarkMainText);

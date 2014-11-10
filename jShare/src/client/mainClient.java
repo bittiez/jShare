@@ -5,6 +5,7 @@ import client.Dialogs.login;
 import client.Guis.UI2;
 import client.Guis.connectionUI;
 import client.Guis.gui;
+import client.Helpers.config;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
 import client.Threads.pingManager;
@@ -25,7 +26,8 @@ public class mainClient {
 
         boolean running = true;
 
-        connectionUI cui = new connectionUI();
+        config Config = new config();
+        connectionUI cui = new connectionUI(Config);
 
         while(true){
             Thread.sleep(1000);
