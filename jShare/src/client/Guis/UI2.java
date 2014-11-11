@@ -82,7 +82,7 @@ public class UI2 {
         sendButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
 
 
-
+        /*
         MenuBar menuBar = new MenuBar();
 
         Menu fileMenu = new Menu();
@@ -96,6 +96,7 @@ public class UI2 {
         themeMenu.add(new MenuItem("Dark"));
         menuBar.add(themeMenu);
         frame.setMenuBar(menuBar);
+        */
 
 
 
