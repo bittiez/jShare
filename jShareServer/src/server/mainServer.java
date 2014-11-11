@@ -2,6 +2,7 @@ package server;
 
 import server.Helper.fileHandler;
 import server.Threads.loginCounter;
+import server.Threads.sendTorrent.sendTorrentThread;
 import server.Threads.threadServer;
 
 import java.io.IOException;
@@ -17,6 +18,8 @@ import java.util.regex.Pattern;
 public class mainServer {
     public static void main(String[] args) throws IOException {
 
+
+
         ArrayList<String> config = new ArrayList<String>();
         
         String settings = fileHandler.readFile("config.jChat");
@@ -30,6 +33,8 @@ public class mainServer {
             fileHandler.saveFile("config.jChat", "{25984}");
         }
 
+        Thread torrent = new Thread(new sendTorrentThread(Integer.parseInt(config.get(0))));
+        torrent.start();
 
 
         clientListManager clientManager = new clientListManager();

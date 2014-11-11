@@ -41,10 +41,14 @@ public class commandHandler {
                 case 101:
                     RETURN.TYPE = commandType.PING;
                     break;
+                case 102:
+                    RETURN.TYPE = commandType.SENDTORRENT;
+                    break;
                 default:
                     RETURN.TYPE = commandType.MESSAGE;
                     RETURN.message=commandParams[0];
                     break;
+
             }
         }
         return RETURN;

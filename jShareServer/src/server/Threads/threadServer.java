@@ -79,6 +79,10 @@ public class threadServer extends Thread{
         close();
     }
 
+    public void sendTorrent(){
+
+    }
+
     public void sendData(String data){
         out.println(data);
         out.flush();
