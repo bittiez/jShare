@@ -5,6 +5,7 @@ import client.Helpers.SmartScroller;
 import client.Helpers.avatar;
 import client.Helpers.config;
 import client.mainClient;
+import org.jdesktop.swingx.HorizontalLayout;
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
 
@@ -185,8 +186,7 @@ public class UI2 {
 
         jp.setLayout(new GridLayout(2,1));
         jp.setBackground(chatPane.getBackground());
-        jp.add(na);
-        jp.add(tl);
+
 
 
         if(msg[0].trim().toLowerCase().equals(this.email.trim().toLowerCase())){
@@ -195,6 +195,9 @@ public class UI2 {
             tl.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
             jp.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         }
+            jp.add(na);
+            jp.add(tl);
+
 
 
         chatPane.add(jp);
