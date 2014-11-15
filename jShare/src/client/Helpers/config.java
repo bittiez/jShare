@@ -4,6 +4,7 @@ import client.Design.themeNames;
 import client.Design.themes;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,6 +56,11 @@ public class config {
             theme = themeNames.DarkTheme;
             _Theme = new themes(theme);
             this.Save();
+        }
+        try {
+            address = InetAddress.getByName(address).getHostAddress();
+        } catch(Exception e){
+            System.err.println(e.getMessage());
         }
 
     }

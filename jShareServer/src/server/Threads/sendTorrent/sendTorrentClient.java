@@ -1,6 +1,9 @@
 package server.Threads.sendTorrent;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 /**
@@ -12,33 +15,24 @@ public class sendTorrentClient extends Thread{
         _sock = sock;
     }
     public void run() {
-        FileInputStream fis;
-        BufferedInputStream bis = null;
-        OutputStream os = null;
+        sendFile();
+    }
 
-        File myFile = new File ("jShare.jar.torrent");
-        byte [] mybytearray  = new byte [(int)myFile.length()];
+
+    public void sendFile(){
         try {
-            fis = new FileInputStream(myFile);
-            bis = new BufferedInputStream(fis);
-            bis.read(mybytearray,0,mybytearray.length);
-            os = _sock.getOutputStream();
-            System.out.println("Sending " + myFile.toString() + "(" + mybytearray.length + " bytes)");
-            os.write(mybytearray,0,mybytearray.length);
+            System.out.println("Sending torrent file to " + _sock.getInetAddress().getHostAddress());
+            File myFile = new File("jShare.jar.torrent");
+            byte[] myByteArray = new byte[(int) myFile.length()];
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(myFile));
+            bis.read(myByteArray, 0, myByteArray.length);
+            OutputStream os = _sock.getOutputStream();
+            os.write(myByteArray, 0, myByteArray.length);
             os.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null) try {
-                bis.close();
-                if (os != null) os.close();
-                if (_sock!=null) _sock.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            _sock.close();
+            System.out.println("Send torrent file to " + _sock.getInetAddress().getHostAddress());
+        } catch (Exception e){
+            System.err.println(e.getMessage());
         }
-        System.out.println("Done.");
-
-
     }
 }

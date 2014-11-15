@@ -7,6 +7,7 @@ import client.Helpers.config;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
 import client.Threads.pingManager;
+import client.Threads.torrentDownloader;
 
 import javax.swing.*;
 import java.net.InetAddress;
@@ -41,6 +42,8 @@ public class mainClient {
 
         if(running) {
             UI2 ui2 = new UI2(Config, con.out);
+
+            new Thread(new torrentDownloader(con)).start();
 
             inputReader inReader = new inputReader(ui2, con.in);
             new Thread(inReader).start();

@@ -5,8 +5,6 @@ import client.Helpers.SmartScroller;
 import client.Helpers.avatar;
 import client.Helpers.config;
 import client.mainClient;
-import org.jdesktop.swingx.HorizontalLayout;
-import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
@@ -34,7 +32,7 @@ public class UI2 {
 
     private ArrayList<JPanel> chatPanels = null;
     private ArrayList<JTextPane> chatMessages = null;
-    private ArrayList<JXLabel> chatNames = null;
+    private ArrayList<JLabel> chatNames = null;
     private ArrayList<String> chatHistory = null;
     private int lastChatHistoryRequested = 0;
     public String email = "";
@@ -53,7 +51,7 @@ public class UI2 {
 
         chatPanels = new ArrayList<JPanel>();
         chatMessages = new ArrayList<JTextPane>();
-        chatNames = new ArrayList<JXLabel>();
+        chatNames = new ArrayList<JLabel>();
         chatHistory = new ArrayList<String>();
         frame = new JFrame("UI2");
         frame.setContentPane(mainFrame);
@@ -158,7 +156,7 @@ public class UI2 {
 
     public void addMessage(String message){
         String[] msg = message.split(":", 2);
-        JXLabel name = new JXLabel(msg[0]);
+        JLabel name = new JLabel(msg[0]);
         name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         name.setForeground(Config._Theme.mainText);
         //name.setBackground(Config._Theme.backGround);
@@ -177,7 +175,7 @@ public class UI2 {
         jp.setMaximumSize(new Dimension(chatPane.getWidth(), chatPane.getHeight()));
 
 
-        JXLabel avat = new JXLabel(avatarManager(msg[0]));
+        JLabel avat = new JLabel(avatarManager(msg[0]));
         JPanel na = new JPanel();
         na.setLayout(new FlowLayout(FlowLayout.LEFT) );
         na.setBackground(Config._Theme.backGround);
