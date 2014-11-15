@@ -211,6 +211,9 @@ public class UI2 {
         //scrollPane.getVerticalScrollBar().setValue(sp);
 
         chatPane.updateUI();
+
+        if(!frame.isActive())
+            frame.toFront();
     }
 
 
