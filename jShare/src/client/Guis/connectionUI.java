@@ -48,6 +48,7 @@ public class connectionUI {
         frame = new JFrame("Connection Settings");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        serverPort.setText("25984");
         serverPort.setText(Config.port);
         serverAddress.setText(Config.address);
         userEmail.setText(Config.userEmail);

@@ -1,20 +1,15 @@
 package client;
 
 import client.Dialogs.couldNotConnect;
-import client.Dialogs.login;
 import client.Guis.UI2;
 import client.Guis.connectionUI;
-import client.Guis.gui;
 import client.Helpers.config;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
 import client.Threads.pingManager;
 
-import java.io.*;
+import javax.swing.*;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 
 /**
  * Created by tad on 10/26/14.
@@ -35,7 +30,8 @@ public class mainClient {
                 break;
             }
         }
-
+        cui.connection[0] = InetAddress.getByName(cui.connection[0]).getHostAddress();
+        System.out.println(cui.connection[0]);
         socketConnection con = new socketConnection(cui.connection[0], cui.connection[1]);
 
         if(!con.openConnection()) {

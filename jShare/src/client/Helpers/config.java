@@ -48,6 +48,13 @@ public class config {
                 theme = themeNames.valueOf(config.get(3));
             }
             _Theme = new themes(theme);
+        } else {
+            address = "jshare.ddns.net";
+            port = "25984";
+            userEmail = "email@email.com";
+            theme = themeNames.DarkTheme;
+            _Theme = new themes(theme);
+            this.Save();
         }
 
     }
