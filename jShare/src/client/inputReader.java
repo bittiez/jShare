@@ -1,7 +1,6 @@
 package client;
 
 import client.Guis.UI2;
-import client.Guis.gui;
 
 import java.io.BufferedReader;
 import java.io.IOException;

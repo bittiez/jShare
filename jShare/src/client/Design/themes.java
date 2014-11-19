@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-import static client.Design.themeNames.*;
-
 /**
  * Created by tad on 11/9/14.
  */

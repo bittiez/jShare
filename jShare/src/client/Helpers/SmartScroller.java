@@ -1,9 +1,11 @@
 package client.Helpers;
 
-import java.awt.Component;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.*;
+import javax.swing.text.DefaultCaret;
+import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 /**
  *  The SmartScroller will attempt to keep the viewport positioned based on

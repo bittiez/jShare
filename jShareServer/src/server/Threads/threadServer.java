@@ -21,13 +21,15 @@ public class threadServer extends Thread{
     private String address = "";
 
     public String email = "Unknown";
+    public double clientVersion = 0.0;
 
 
-    public threadServer(Socket socket, clientListManager cm) {
+    public threadServer(Socket socket, clientListManager cm, double _clientVersion) {
 
         super("MiniServer");
         this.socket = socket;
         this.clientManager = cm;
+        clientVersion = _clientVersion;
 
         address = socket.getInetAddress().getHostAddress();
     }
@@ -48,6 +50,7 @@ public class threadServer extends Thread{
         }
         if(connected) {
             mainServer.log("Client connected. (" + address + ")");
+            sendData(clientVersion + "");
         }
         String rec;
         while(connected){

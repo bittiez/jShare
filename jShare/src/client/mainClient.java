@@ -7,20 +7,21 @@ import client.Helpers.config;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
 import client.Threads.pingManager;
-import client.Threads.torrentDownloader;
+import client.Threads.updateDownloader;
 
-import javax.swing.*;
 import java.net.InetAddress;
 
 /**
  * Created by tad on 10/26/14.
  */
 public class mainClient {
-    public static double Version =  0.8;
+    public static double Version =  1.7;
+
 
     public static void main(String args[]) throws Exception {
 
         boolean running = true;
+        double serverVersion = 0.0;
 
         config Config = new config();
         connectionUI cui = new connectionUI(Config);
@@ -32,7 +33,6 @@ public class mainClient {
             }
         }
         cui.connection[0] = InetAddress.getByName(cui.connection[0]).getHostAddress();
-        System.out.println(cui.connection[0]);
         socketConnection con = new socketConnection(cui.connection[0], cui.connection[1]);
 
         if(!con.openConnection()) {
@@ -41,9 +41,15 @@ public class mainClient {
         }
 
         if(running) {
-            UI2 ui2 = new UI2(Config, con.out);
+            serverVersion = Double.parseDouble(con.in.readLine());
 
-            new Thread(new torrentDownloader(con)).start();
+            UI2 ui2 = new UI2(Config, con.out);
+            if(serverVersion > Version) {
+                socketConnection update_socket = new socketConnection(cui.connection[0], "" + (Integer.parseInt(cui.connection[1]) + 1));
+                if (update_socket.openConnection()) {
+                    new Thread(new updateDownloader(update_socket)).start();
+                }
+            }
 
             inputReader inReader = new inputReader(ui2, con.in);
             new Thread(inReader).start();

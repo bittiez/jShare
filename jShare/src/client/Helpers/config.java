@@ -2,7 +2,6 @@ package client.Helpers;
 
 import client.Design.themeNames;
 import client.Design.themes;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -13,9 +12,12 @@ import java.util.regex.Pattern;
  * Created by tad on 11/9/14.
  */
 public class config {
-    //Addresses and ports not set up yet
+    public static String UpdateFile = "Update.zip";
 
+
+    //Addresses and ports not set up yet
     public String address = null;
+    public String ipAddress = null;
     public String[] addresses = null;
 
     public String port = null;
@@ -58,7 +60,7 @@ public class config {
             this.Save();
         }
         try {
-            address = InetAddress.getByName(address).getHostAddress();
+            ipAddress = InetAddress.getByName(address).getHostAddress();
         } catch(Exception e){
             System.err.println(e.getMessage());
         }

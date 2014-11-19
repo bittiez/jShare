@@ -5,15 +5,13 @@ import client.Helpers.SmartScroller;
 import client.Helpers.avatar;
 import client.Helpers.config;
 import client.mainClient;
-import org.jdesktop.swingx.VerticalLayout;
+import sun.awt.VerticalBagLayout;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,6 +26,7 @@ public class UI2 {
     private JScrollPane scrollPane;
     private JTextField inputField;
     private JButton sendButton;
+    private JPanel statusBar;
     public JFrame frame = null;
 
     private ArrayList<JPanel> chatPanels = null;
@@ -55,9 +54,9 @@ public class UI2 {
         chatHistory = new ArrayList<String>();
         frame = new JFrame("UI2");
         frame.setContentPane(mainFrame);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        chatPane.setLayout(new VerticalLayout());
+       chatPane.setLayout(new VerticalBagLayout());
         chatPane.setSize(scrollPane.getWidth(), scrollPane.getHeight());
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
@@ -140,6 +139,23 @@ public class UI2 {
                 }
             }
         });
+
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e)
+            {
+                System.out.println("Running updates...");
+                ProcessBuilder pb = new ProcessBuilder("java", "-jar", "jUpdate.jar");
+                try {
+                    pb.start();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                System.exit(0);
+            }
+        });
+
+
         scrollPane.setAutoscrolls(true);
         new SmartScroller(scrollPane);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

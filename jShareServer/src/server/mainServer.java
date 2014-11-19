@@ -1,8 +1,7 @@
 package server;
 
 import server.Helper.fileHandler;
-import server.Threads.loginCounter;
-import server.Threads.sendTorrent.sendTorrentThread;
+import server.Threads.sendTorrent.sendUpdateListener;
 import server.Threads.threadServer;
 
 import java.io.IOException;
@@ -16,8 +15,9 @@ import java.util.regex.Pattern;
  * Created by tad on 10/26/14.
  */
 public class mainServer {
+    public static String UpdateFile = "Update.zip";
     public static void main(String[] args) throws IOException {
-
+        double clientVersion = 1.8;
 
 
         ArrayList<String> config = new ArrayList<String>();
@@ -30,10 +30,13 @@ public class mainServer {
             }
         } else {
             config.add("25984");
-            fileHandler.saveFile("config.jChat", "{25984}");
+            config.add("1.8");
+            fileHandler.saveFile("config.jChat", "{25984}{1.8}");
         }
+        if(config.size() > 1)
+        clientVersion = Double.parseDouble(config.get(1));
 
-        Thread torrent = new Thread(new sendTorrentThread(Integer.parseInt(config.get(0))));
+        Thread torrent = new Thread(new sendUpdateListener(Integer.parseInt(config.get(0))));
         torrent.start();
 
 
@@ -51,7 +54,7 @@ public class mainServer {
 
         while(listeningSocket){
             Socket clientSocket = serverSocket.accept();
-            threadServer mini = new threadServer(clientSocket, clientManager);
+            threadServer mini = new threadServer(clientSocket, clientManager, clientVersion);
             mini.start();
             clientManager.add(mini);
             //sendToAll(clientManager, "Someone connected to the server..");
