@@ -15,13 +15,13 @@ import java.net.InetAddress;
  * Created by tad on 10/26/14.
  */
 public class mainClient {
-    public static double Version =  1.7;
+    public static double Version =  1.9;
 
 
     public static void main(String args[]) throws Exception {
 
         boolean running = true;
-        double serverVersion = 0.0;
+        double serverVersion;
 
         config Config = new config();
         connectionUI cui = new connectionUI(Config);
@@ -47,7 +47,7 @@ public class mainClient {
             if(serverVersion > Version) {
                 socketConnection update_socket = new socketConnection(cui.connection[0], "" + (Integer.parseInt(cui.connection[1]) + 1));
                 if (update_socket.openConnection()) {
-                    new Thread(new updateDownloader(update_socket)).start();
+                    new Thread(new updateDownloader(update_socket, Config)).start();
                 }
             }
 

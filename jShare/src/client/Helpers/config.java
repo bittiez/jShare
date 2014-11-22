@@ -28,6 +28,8 @@ public class config {
     public themeNames theme = themeNames.DarkTheme;
     public themes _Theme = null;
 
+    public Boolean updateAvailable = false;
+
     public config(){
         String settings = fileHandler.readFile("config.jShare");
         ArrayList<String> config = new ArrayList<String>();

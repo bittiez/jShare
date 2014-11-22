@@ -5,13 +5,12 @@ import client.Helpers.SmartScroller;
 import client.Helpers.avatar;
 import client.Helpers.config;
 import client.mainClient;
-import sun.awt.VerticalBagLayout;
+import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -56,11 +55,10 @@ public class UI2 {
         frame.setContentPane(mainFrame);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-       chatPane.setLayout(new VerticalBagLayout());
+        chatPane.setLayout(new VerticalLayout());
         chatPane.setSize(scrollPane.getWidth(), scrollPane.getHeight());
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-
 
 
 
@@ -143,14 +141,16 @@ public class UI2 {
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e)
             {
-                System.out.println("Running updates...");
-                ProcessBuilder pb = new ProcessBuilder("java", "-jar", "jUpdate.jar");
-                try {
-                    pb.start();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                if(Config.updateAvailable) {
+                    System.out.println("Running updates...");
+                    ProcessBuilder pb = new ProcessBuilder("java", "-jar", "jUpdate.jar");
+                    try {
+                        pb.start();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 }
-                //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 System.exit(0);
             }
         });
@@ -175,7 +175,6 @@ public class UI2 {
         JLabel name = new JLabel(msg[0]);
         name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         name.setForeground(Config._Theme.mainText);
-        //name.setBackground(Config._Theme.backGround);
 
         JTextPane tl = new JTextPane();
         tl.setText(msg[1]);

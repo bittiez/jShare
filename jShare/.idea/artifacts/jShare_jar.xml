@@ -3,9 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts/jShare_jar</output-path>
     <root id="archive" name="jShare.jar">
       <element id="module-output" name="jShare" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/commons-codec-1.4.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/commons-lang-2.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/swingx-all-1.6.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/commons-io-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/commons-lang-2.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/commons-codec-1.4.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -16,8 +16,10 @@ import java.nio.file.Paths;
  */
 public class updateDownloader implements Runnable {
     private socketConnection _sock = null;
-    public updateDownloader(socketConnection sock){
+    private config Config = null;
+    public updateDownloader(socketConnection sock, config _Config){
         _sock = sock;
+        Config = _Config;
     }
 
     @Override
@@ -47,6 +49,7 @@ public class updateDownloader implements Runnable {
             }
             bos.close();
             System.out.println("Downloaded update file.");
+            Config.updateAvailable = true;
         }catch (Exception e){
             //System.err.println(e.toString());
             e.printStackTrace();
