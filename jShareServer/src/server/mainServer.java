@@ -1,6 +1,7 @@
 package server;
 
 import server.Helper.fileHandler;
+import server.Threads.configReloader;
 import server.Threads.sendTorrent.sendUpdateListener;
 import server.Threads.threadServer;
 
@@ -17,11 +18,15 @@ import java.util.regex.Pattern;
 public class mainServer {
     public static String UpdateFile = "Update.zip";
     public static void main(String[] args) throws IOException {
-        double clientVersion = 1.8;
+        new mainServer();
+    }
+    public double clientVersion = 1.8;
+    public mainServer() throws IOException {
+
 
 
         ArrayList<String> config = new ArrayList<String>();
-        
+
         String settings = fileHandler.readFile("config.jChat");
         if(!settings.isEmpty()){
             Matcher m = Pattern.compile("\\{([^}]+)\\}").matcher(settings);
@@ -30,14 +35,17 @@ public class mainServer {
             }
         } else {
             config.add("25984");
-            config.add("1.8");
-            fileHandler.saveFile("config.jChat", "{25984}{1.8}");
+            config.add(clientVersion+"");
         }
         if(config.size() > 1)
-        clientVersion = Double.parseDouble(config.get(1));
+            clientVersion = Double.parseDouble(config.get(1));
+        else{
+            config.add(clientVersion+"");
+        }
+        fileHandler.saveFile("config.jChat", "{"+config.get(0)+"}{"+config.get(1)+"}");
 
-        Thread torrent = new Thread(new sendUpdateListener(Integer.parseInt(config.get(0))));
-        torrent.start();
+        Thread FileServer = new Thread(new sendUpdateListener(Integer.parseInt(config.get(0))));
+        FileServer.start();
 
 
         clientListManager clientManager = new clientListManager();
@@ -52,6 +60,9 @@ public class mainServer {
             listeningSocket = false;
         }
 
+        configReloader CI = new configReloader(this);
+        new Thread(CI).start();
+
         while(listeningSocket){
             Socket clientSocket = serverSocket.accept();
             threadServer mini = new threadServer(clientSocket, clientManager, clientVersion);
@@ -60,8 +71,6 @@ public class mainServer {
             //sendToAll(clientManager, "Someone connected to the server..");
         }
         serverSocket.close();
-
-
     }
 
     public static void sendToAll(threadServer ts, clientListManager cm, String data){
