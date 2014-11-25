@@ -40,6 +40,9 @@ public class UI2 {
 
     private DataOutputStream con_out;
     private config Config= null;
+    public String titleBase = "jChat " + mainClient.Version;
+    private int messageCountMissed = 0;
+    private TrayIcon ti = null;
 
 
 
@@ -51,15 +54,27 @@ public class UI2 {
         chatMessages = new ArrayList<JTextPane>();
         chatNames = new ArrayList<JLabel>();
         chatHistory = new ArrayList<String>();
-        frame = new JFrame("UI2");
+        frame = new JFrame(titleBase);
         frame.setContentPane(mainFrame);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        frame.setIconImage(new ImageIcon(getClass().getResource("/client/icon.jpg")).getImage());
+        if (SystemTray.isSupported()) {
+            SystemTray tray = SystemTray.getSystemTray();
+            ti = new TrayIcon(frame.getIconImage(), "jChat");
+            ti.setImageAutoSize(true);
+            try {
+                tray.add(ti);
+            } catch (Exception e){
+                System.err.println(e);
+            }
+
+        }
 
         chatPane.setLayout(new VerticalLayout());
         chatPane.setSize(scrollPane.getWidth(), scrollPane.getHeight());
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-
 
 
         chatPane.setBackground(Config._Theme.backGround);
@@ -139,6 +154,11 @@ public class UI2 {
         });
 
         frame.addWindowListener(new WindowAdapter() {
+            public void windowGainedFocus(WindowEvent e) {
+                messageCountMissed = 0;
+                frame.setTitle(titleBase);
+            }
+
             public void windowClosing(WindowEvent e)
             {
                 if(Config.updateAvailable) {
@@ -149,7 +169,6 @@ public class UI2 {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                    //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 }
                 System.exit(0);
             }
@@ -222,11 +241,19 @@ public class UI2 {
 
         //int sp = scrollPane.getVerticalScrollBar().getMaximum();
         //scrollPane.getVerticalScrollBar().setValue(sp);
-
         chatPane.updateUI();
 
-        if(!frame.isActive())
-            frame.toFront();
+        if(!frame.isActive()) {
+            //frame.toFront();
+            messageCountMissed++;
+            ti.displayMessage(messageCountMissed + " unread messages!", messageCountMissed + " unread messages!", TrayIcon.MessageType.INFO);
+            frame.setTitle(titleBase + " (" + messageCountMissed + ")");
+        } else {
+            if(messageCountMissed > 0) {
+                frame.setTitle(titleBase);
+                messageCountMissed = 0;
+            }
+        }
     }
 
 
