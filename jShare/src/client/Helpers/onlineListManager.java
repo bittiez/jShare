@@ -13,28 +13,30 @@ public class onlineListManager {
     public ArrayList<String> Emails;
 
     private ArrayList<avatar> _AvatarImages;
-    private JPanel _Panel;
+    public JPanel Panel;
     private ArrayList<JLabel> _AvatarLabels;
     private UI2 _UI;
-
-    public onlineListManager(UI2 UI){
+    public onlineListManager(UI2 UI, JPanel parentpanel){
         _UI = UI;
+        Panel = parentpanel;
 
         Emails = new ArrayList<String>();
+        Emails.add(UI.email);
         _AvatarLabels = new ArrayList<JLabel>();
         _AvatarImages = new ArrayList<avatar>();
-        genFullUserList();
+        //genFullUserList();
     }
 
     public void genFullUserList(){
         resetPanel();
-        for (int i = 0; i < Emails.size(); i++) {
-            ImageIcon II = _UI.avatarManager(Emails.get(i));
+            for (int i = 0; i < Emails.size(); i++) {
+                ImageIcon II = _UI.avatarManager(Emails.get(i));
 
-            JLabel tempLabel = new JLabel(II);
-                _AvatarLabels.add(tempLabel);
-            _Panel.add(tempLabel);
-        }
+                JLabel tempLabel = new JLabel(II);
+                    _AvatarLabels.add(tempLabel);
+                Panel.add(tempLabel);
+            }
+        Panel.updateUI();
     }
 
     public void addUser(String Email){
@@ -46,7 +48,7 @@ public class onlineListManager {
     }
 
     private void resetPanel(){
-        _Panel = new JPanel();
-        _Panel.setLayout(new GridLayout(0, 3));
+        Panel = new JPanel();
+        Panel.setLayout(new GridLayout(0, 3));
     }
 }

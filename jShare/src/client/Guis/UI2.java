@@ -4,8 +4,10 @@ import client.Design.uScrollBar;
 import client.Helpers.SmartScroller;
 import client.Helpers.avatar;
 import client.Helpers.config;
+import client.Helpers.onlineListManager;
 import client.mainClient;
 import org.jdesktop.swingx.VerticalLayout;
+import sun.org.mozilla.javascript.internal.Synchronizer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +27,7 @@ public class UI2 {
     private JScrollPane scrollPane;
     private JTextField inputField;
     private JButton sendButton;
-    private JPanel statusBar;
+    private JPanel onlineList;
     public JFrame frame = null;
 
     private ArrayList<JPanel> chatPanels = null;
@@ -46,9 +48,10 @@ public class UI2 {
 
 
 
-    public UI2(config _Config, DataOutputStream output) {
+    public UI2(config _Config, DataOutputStream output, String EMAIL) {
         this.con_out = output;
         Config = _Config;
+        email = EMAIL;
 
         chatPanels = new ArrayList<JPanel>();
         chatMessages = new ArrayList<JTextPane>();
@@ -76,12 +79,15 @@ public class UI2 {
         chatPane.setAlignmentY(JPanel.TOP_ALIGNMENT);
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
+        onlineList.setPreferredSize(new Dimension(150, scrollPane.getHeight()));
+
 
         chatPane.setBackground(Config._Theme.backGround);
         mainFrame.setBackground(Config._Theme.backGround);
         botPanel.setBackground(Config._Theme.backGround);
         inputField.setBackground(Config._Theme.inputFieldBackGround);
         sendButton.setBackground(Config._Theme.button);
+        onlineList.setBackground(Config._Theme.backGround);
 
         chatPane.setForeground(Config._Theme.mainText);
         inputField.setForeground(Config._Theme.secondaryText);
@@ -89,26 +95,9 @@ public class UI2 {
 
         chatPane.setBorder(Config._Theme.border);
         scrollPane.setBorder(Config._Theme.border);
+        onlineList.setBorder(Config._Theme.border);
         inputField.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
         sendButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
-
-
-        /*
-        MenuBar menuBar = new MenuBar();
-
-        Menu fileMenu = new Menu();
-        fileMenu.setLabel("File");
-        fileMenu.add(new MenuItem("Exit"));
-        menuBar.add(fileMenu);
-
-        Menu themeMenu = new Menu();
-        themeMenu.setLabel("Themes");
-        themeMenu.add(new MenuItem("uOrange"));
-        themeMenu.add(new MenuItem("Dark"));
-        menuBar.add(themeMenu);
-        frame.setMenuBar(menuBar);
-        */
-
 
 
 
@@ -180,6 +169,7 @@ public class UI2 {
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUI(new uScrollBar(Config));
 
+        onlineListManager onlineListClass = new onlineListManager(this, onlineList);
 
 
         frame.pack();

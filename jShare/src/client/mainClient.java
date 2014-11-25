@@ -43,7 +43,7 @@ public class mainClient {
         if(running) {
             serverVersion = Double.parseDouble(con.in.readLine());
 
-            UI2 ui2 = new UI2(Config, con.out);
+            UI2 ui2 = new UI2(Config, con.out, cui.userSettings[0]);
             if(serverVersion > Version) {
                 socketConnection update_socket = new socketConnection(cui.connection[0], "" + (Integer.parseInt(cui.connection[1]) + 1));
                 if (update_socket.openConnection()) {
@@ -55,7 +55,7 @@ public class mainClient {
             new Thread(inReader).start();
 
             userLogin ul = new userLogin(con, cui.userSettings[0], "--");
-            ui2.email = cui.userSettings[0];
+
 
             pingManager pm = new pingManager(con);
             new Thread(pm).start();
