@@ -61,7 +61,7 @@ public class UI2 {
         frame.setIconImage(new ImageIcon(getClass().getResource("/client/icon.jpg")).getImage());
         if (SystemTray.isSupported()) {
             SystemTray tray = SystemTray.getSystemTray();
-            ti = new TrayIcon(frame.getIconImage(), "jChat");
+            ti = new TrayIcon(frame.getIconImage(), titleBase);
             ti.setImageAutoSize(true);
             try {
                 tray.add(ti);
@@ -189,6 +189,9 @@ public class UI2 {
         frame.setVisible(true);
     }
 
+
+
+
     public void addMessage(String message){
         String[] msg = message.split(":", 2);
         JLabel name = new JLabel(msg[0]);
@@ -255,8 +258,6 @@ public class UI2 {
             }
         }
     }
-
-
     public ImageIcon avatarManager(String email){
 
         int i = avatarEmails.indexOf(email);
@@ -269,7 +270,6 @@ public class UI2 {
             return a._image;
         }
     }
-
     public void sendData(String data){
         try {
             con_out.writeBytes(data + "\n");
