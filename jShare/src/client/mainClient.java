@@ -7,6 +7,7 @@ import client.Helpers.config;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
 import client.Threads.pingManager;
+import client.Threads.programTick;
 import client.Threads.updateDownloader;
 
 import java.net.InetAddress;
@@ -59,6 +60,9 @@ public class mainClient {
 
             pingManager pm = new pingManager(con);
             new Thread(pm).start();
+
+            programTick pt = new programTick(Config, ui2);
+            new Thread(pt).start();
 
             if(!ul.loginV1())
             {

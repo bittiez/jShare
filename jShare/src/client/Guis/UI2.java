@@ -7,7 +7,6 @@ import client.Helpers.config;
 import client.Helpers.onlineListManager;
 import client.mainClient;
 import org.jdesktop.swingx.VerticalLayout;
-import sun.org.mozilla.javascript.internal.Synchronizer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,7 +43,7 @@ public class UI2 {
     private config Config= null;
     public String titleBase = "jChat " + mainClient.Version;
     private int messageCountMissed = 0;
-    private TrayIcon ti = null;
+    public TrayIcon trayIcon = null;
 
 
 
@@ -64,10 +63,10 @@ public class UI2 {
         frame.setIconImage(new ImageIcon(getClass().getResource("/client/icon.jpg")).getImage());
         if (SystemTray.isSupported()) {
             SystemTray tray = SystemTray.getSystemTray();
-            ti = new TrayIcon(frame.getIconImage(), titleBase);
-            ti.setImageAutoSize(true);
+            trayIcon = new TrayIcon(frame.getIconImage(), titleBase);
+            trayIcon.setImageAutoSize(true);
             try {
-                tray.add(ti);
+                tray.add(trayIcon);
             } catch (Exception e){
                 System.err.println(e);
             }
@@ -239,7 +238,7 @@ public class UI2 {
         if(!frame.isActive()) {
             //frame.toFront();
             messageCountMissed++;
-            ti.displayMessage(messageCountMissed + " unread messages!", messageCountMissed + " unread messages!", TrayIcon.MessageType.INFO);
+            trayIcon.displayMessage(messageCountMissed + " unread messages!", messageCountMissed + " unread messages!", TrayIcon.MessageType.INFO);
             frame.setTitle(titleBase + " (" + messageCountMissed + ")");
         } else {
             if(messageCountMissed > 0) {
