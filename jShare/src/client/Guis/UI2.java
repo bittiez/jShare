@@ -1,15 +1,11 @@
 package client.Guis;
 
 import client.Design.uScrollBar;
-import client.Helpers.SmartScroller;
-import client.Helpers.avatar;
-import client.Helpers.config;
-import client.Helpers.onlineListManager;
+import client.Helpers.*;
 import client.mainClient;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.DataOutputStream;
@@ -186,7 +182,7 @@ public class UI2 {
 
         onlineListClass = new onlineListManager(this, onlineList);
         onlineListClass.addUser(email);
-        //onlineListClass.genFullUserList();
+        onlineListClass.genFullUserList();
 
 
         frame.pack();
@@ -283,8 +279,27 @@ public class UI2 {
             System.exit(0);
         }
     }
-    public void recData(String data){
-        addMessage(data);
+    public void recData(inputHandler received){
+        boolean updateUserList = false;
+        if(received.inputtype == inputType.MESSAGE)
+            addMessage(received.message);
+        if(received.inputtype == inputType.CONNECTED) {
+            onlineListClass.addUser(received.email);
+            updateUserList = true;
+        }
+        if(received.inputtype == inputType.DISCONNECTED) {
+            onlineListClass.remUser(received.email);
+            updateUserList = true;
+        }
+        if(received.inputtype == inputType.ONLINELIST){
+            String[] users = received.message.split("#");
+            for (int i = 0; i < users.length; i++) {
+                onlineListClass.addUser(users[i]);
+            }
+            updateUserList = true;
+        }
+        if(updateUserList)
+            onlineListClass.genFullUserList();
     }
     public void sendButtonPress(){
         String input = inputField.getText().trim();

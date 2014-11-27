@@ -1,6 +1,7 @@
 package client;
 
 import client.Guis.UI2;
+import client.Helpers.inputHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,18 +20,18 @@ public class inputReader implements Runnable {
 
     @Override
     public void run() {
-        String data = "";
+        String data;
         while(running){
             try {
                 data = in.readLine();
-
             } catch (IOException e) {
                 e.printStackTrace();
                 running = false;
                 break;
             }
-            mainGui.recData(data);
-            //mainClient.log(data);
+
+            inputHandler received = new inputHandler(data);
+            mainGui.recData(received);
         }
     }
 

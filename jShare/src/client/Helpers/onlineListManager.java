@@ -43,12 +43,10 @@ public class onlineListManager {
 
     public void addUser(String Email){
         Emails.add(Email);
-        genFullUserList();
     }
 
     public void remUser(String Email){
         Emails.remove(Email);
-        genFullUserList();
     }
 
     private void resetPanel(){
