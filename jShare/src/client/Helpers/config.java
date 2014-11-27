@@ -3,6 +3,7 @@ package client.Helpers;
 import client.Design.themeNames;
 import client.Design.themes;
 
+import javax.swing.*;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -29,6 +30,8 @@ public class config {
     public themes _Theme = null;
 
     public Boolean updateAvailable = false;
+
+    public ImageIcon ICON = new ImageIcon(getClass().getResource("/client/icon.png"));
 
     public config(){
         String settings = fileHandler.readFile("config.jShare");

@@ -62,7 +62,7 @@ public class UI2 {
         frame.setContentPane(mainFrame);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        frame.setIconImage(new ImageIcon(getClass().getResource("/client/icon.jpg")).getImage());
+        frame.setIconImage(Config.ICON.getImage());
         if (SystemTray.isSupported()) {
             SystemTray tray = SystemTray.getSystemTray();
             trayIcon = new TrayIcon(frame.getIconImage(), titleBase);
@@ -107,6 +107,20 @@ public class UI2 {
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     sendButtonPress();
                 }
+            }
+        });
+
+        inputField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(messageCountMissed > 0){
+                messageCountMissed = 0;
+                frame.setTitle(titleBase);}
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+
             }
         });
 

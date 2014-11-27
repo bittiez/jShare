@@ -45,6 +45,7 @@ public class connectionUI {
     public connectionUI(config _Config) {
         Config=_Config;
         frame = new JFrame("Connection Settings");
+        frame.setIconImage(Config.ICON.getImage());
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         serverPort.setText("25984");
