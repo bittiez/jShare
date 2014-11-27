@@ -4,6 +4,7 @@ import client.Dialogs.couldNotConnect;
 import client.Guis.UI2;
 import client.Guis.connectionUI;
 import client.Helpers.config;
+import client.Helpers.emailValidator;
 import client.Helpers.socketConnection;
 import client.Helpers.userLogin;
 import client.Threads.pingManager;
@@ -30,7 +31,13 @@ public class mainClient {
         while(true){
             Thread.sleep(1000);
             if(!cui.frame.isVisible() || (cui.connection[0] != "" && cui.connection[0] != null)){
-                break;
+                emailValidator EV = new emailValidator();
+                if(!EV.validate(cui.userSettings[0])) {
+                    cui = new connectionUI(Config);
+                    //cui.frame.setVisible(true);
+                }
+                else
+                    break;
             }
         }
         cui.connection[0] = InetAddress.getByName(cui.connection[0]).getHostAddress();
