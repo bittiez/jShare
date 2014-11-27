@@ -1,6 +1,8 @@
 package client.Helpers;
 
 import client.Guis.UI2;
+import org.jdesktop.swingx.VerticalLayout;
+import sun.awt.VerticalBagLayout;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 public class onlineListManager {
     public ArrayList<String> Emails;
 
-    private ArrayList<avatar> _AvatarImages;
     public JPanel Panel;
     private ArrayList<JLabel> _AvatarLabels;
     private UI2 _UI;
@@ -20,11 +21,12 @@ public class onlineListManager {
         _UI = UI;
         Panel = parentpanel;
 
+        Panel.setLayout(new VerticalLayout());
+        //Panel.setLayout(new GridLayout(0, 3));
+
+
         Emails = new ArrayList<String>();
-        Emails.add(UI.email);
         _AvatarLabels = new ArrayList<JLabel>();
-        _AvatarImages = new ArrayList<avatar>();
-        //genFullUserList();
     }
 
     public void genFullUserList(){
@@ -41,14 +43,15 @@ public class onlineListManager {
 
     public void addUser(String Email){
         Emails.add(Email);
+        genFullUserList();
     }
 
     public void remUser(String Email){
-            Emails.remove(Email);
+        Emails.remove(Email);
+        genFullUserList();
     }
 
     private void resetPanel(){
-        Panel = new JPanel();
-        Panel.setLayout(new GridLayout(0, 3));
+        Panel.removeAll();
     }
 }

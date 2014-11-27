@@ -34,7 +34,6 @@ public class mainClient {
                 emailValidator EV = new emailValidator();
                 if(!EV.validate(cui.userSettings[0])) {
                     cui = new connectionUI(Config);
-                    //cui.frame.setVisible(true);
                 }
                 else
                     break;

@@ -9,6 +9,7 @@ import client.mainClient;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.DataOutputStream;
@@ -44,6 +45,7 @@ public class UI2 {
     public String titleBase = "jChat " + mainClient.Version;
     private int messageCountMissed = 0;
     public TrayIcon trayIcon = null;
+    public onlineListManager onlineListClass;
 
 
 
@@ -94,7 +96,7 @@ public class UI2 {
 
         chatPane.setBorder(Config._Theme.border);
         scrollPane.setBorder(Config._Theme.border);
-        onlineList.setBorder(Config._Theme.border);
+        onlineList.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
         inputField.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
         sendButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
 
@@ -168,7 +170,9 @@ public class UI2 {
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUI(new uScrollBar(Config));
 
-        onlineListManager onlineListClass = new onlineListManager(this, onlineList);
+        onlineListClass = new onlineListManager(this, onlineList);
+        onlineListClass.addUser(email);
+        //onlineListClass.genFullUserList();
 
 
         frame.pack();
@@ -231,12 +235,9 @@ public class UI2 {
         chatNames.add(avat);
         chatMessages.add(tl);
 
-        //int sp = scrollPane.getVerticalScrollBar().getMaximum();
-        //scrollPane.getVerticalScrollBar().setValue(sp);
         chatPane.updateUI();
 
         if(!frame.isActive()) {
-            //frame.toFront();
             messageCountMissed++;
             trayIcon.displayMessage(messageCountMissed + " unread messages!", messageCountMissed + " unread messages!", TrayIcon.MessageType.INFO);
             frame.setTitle(titleBase + " (" + messageCountMissed + ")");
