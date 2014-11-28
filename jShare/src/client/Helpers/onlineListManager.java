@@ -1,6 +1,7 @@
 package client.Helpers;
 
 import client.Guis.UI2;
+import javafx.scene.layout.Pane;
 import org.jdesktop.swingx.VerticalLayout;
 import sun.awt.VerticalBagLayout;
 
@@ -21,28 +22,43 @@ public class onlineListManager {
         _UI = UI;
         Panel = parentpanel;
 
-        Panel.setLayout(new VerticalLayout());
-        //Panel.setLayout(new GridLayout(0, 3));
-
+        setLayout();
 
         Emails = new ArrayList<String>();
         _AvatarLabels = new ArrayList<JLabel>();
     }
 
+    public void setLayout(){
+        Panel.setLayout(new GridLayout(0, 5));
+    }
+
     public void genFullUserList(){
         resetPanel();
+
             for (int i = 0; i < Emails.size(); i++) {
+                if (Emails.get(i) == "" || Emails.get(i) == null || Emails.get(i).isEmpty()) {
+                    Emails.remove(i);
+                    continue;
+                }
+                System.out.println(Emails.get(i));
                 ImageIcon II = _UI.avatarManager(Emails.get(i));
 
                 JLabel tempLabel = new JLabel(II);
-                    _AvatarLabels.add(tempLabel);
+                tempLabel.setToolTipText(Emails.get(i));
+                _AvatarLabels.add(tempLabel);
                 Panel.add(tempLabel);
             }
-        Panel.updateUI();
+
+            Panel.revalidate();
+            Panel.repaint();
+
     }
 
     public void addUser(String Email){
-        Emails.add(Email);
+
+        if(Emails.indexOf(Email) < 0) {
+            Emails.add(Email);
+        }
     }
 
     public void remUser(String Email){
@@ -50,6 +66,16 @@ public class onlineListManager {
     }
 
     private void resetPanel(){
+        for (int i = 0; i < Panel.getComponentCount(); i++) {
+            Panel.remove(i);
+        }
+
         Panel.removeAll();
+        _AvatarLabels.clear();
+
+
+
+        //Panel = new JPanel();
+        //setLayout();
     }
 }

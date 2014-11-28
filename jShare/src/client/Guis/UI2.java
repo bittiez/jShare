@@ -180,12 +180,10 @@ public class UI2 {
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUI(new uScrollBar(Config));
 
-        onlineListClass = new onlineListManager(this, onlineList);
-        onlineListClass.addUser(email);
-        onlineListClass.genFullUserList();
-
 
         frame.pack();
+        onlineListClass = new onlineListManager(this, onlineList);
+        //onlineListClass.genFullUserList();
         frame.setSize(750, 400);
         frame.setLocationRelativeTo(null);
         inputField.requestFocus();

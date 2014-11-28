@@ -23,4 +23,15 @@ public class clientListManager {
         }
     }
 
+    public String onlineUserList(){
+        StringBuilder OL = new StringBuilder();
+        for (int i = 0; i < clientList.size(); i++) {
+            String temail = clientList.get(i).email;
+            if(temail != null && temail != "Unknown" && !temail.isEmpty())
+                OL.append(temail);
+                OL.append("#");
+        }
+        return OL.toString();
+    }
+
 }

@@ -17,14 +17,12 @@ import java.util.regex.Pattern;
  */
 public class mainServer {
     public static String UpdateFile = "Update.zip";
+    public clientListManager clientManager;
     public static void main(String[] args) throws IOException {
         new mainServer();
     }
     public double clientVersion = 1.8;
     public mainServer() throws IOException {
-
-
-
         ArrayList<String> config = new ArrayList<String>();
 
         String settings = fileHandler.readFile("config.jChat");
@@ -48,7 +46,7 @@ public class mainServer {
         FileServer.start();
 
 
-        clientListManager clientManager = new clientListManager();
+        clientManager = new clientListManager();
         ServerSocket serverSocket = null;
 
         boolean listeningSocket = true;
@@ -68,15 +66,25 @@ public class mainServer {
             threadServer mini = new threadServer(clientSocket, clientManager, clientVersion);
             mini.start();
             clientManager.add(mini);
-            //sendToAll(clientManager, "Someone connected to the server..");
+            //sendMsgToAll(clientManager, "Someone connected to the server..");
         }
         serverSocket.close();
     }
 
-    public static void sendToAll(threadServer ts, clientListManager cm, String data){
+
+    public static void sendMsgToAll(threadServer ts, clientListManager cm, String data){
         for (int i = 0; i < cm.clientList.size(); i++) {
             try {
-                cm.clientList.get(i).sendData(ts.email + ": " +data);}
+                cm.clientList.get(i).sendData("{100}" + ts.email + ": " +data);}
+            catch (Exception e){
+                cm.clientList.get(i).close();
+                cm.clientList.remove(i);}
+        }
+    }
+    public static void senDataToAll(clientListManager cm, String data){
+        for (int i = 0; i < cm.clientList.size(); i++) {
+            try {
+                cm.clientList.get(i).sendData(data);}
             catch (Exception e){
                 cm.clientList.get(i).close();
                 cm.clientList.remove(i);}

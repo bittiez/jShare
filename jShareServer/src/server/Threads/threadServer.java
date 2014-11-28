@@ -51,6 +51,7 @@ public class threadServer extends Thread{
         if(connected) {
             mainServer.log("Client connected. (" + address + ")");
             sendData(clientVersion + "");
+            mainServer.senDataToAll(clientManager, "{103}" + clientManager.onlineUserList());
         }
         String rec;
         while(connected){
@@ -62,19 +63,20 @@ public class threadServer extends Thread{
 
                 switch(recieved.TYPE){
                     case MESSAGE:
-                        mainServer.sendToAll(this, clientManager, recieved.message);
+                        mainServer.sendMsgToAll(this, clientManager, recieved.message);
                         break;
                     case LOGIN:
                         this.email = recieved.message;
                         //sendData("Logged in as " + this.email);
                         mainServer.log(this.address + ": Logged in with " + this.email);
-                        mainServer.sendToAll(this, clientManager, "Connected to the server");
+                        mainServer.sendMsgToAll(this, clientManager, "Connected to the server");
+                        mainServer.senDataToAll(clientManager, "{101}" + this.email);
                         break;
                     case PING:
                         break;
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 connected = false;
             }
 
@@ -96,7 +98,8 @@ public class threadServer extends Thread{
             this.connected = false;
             clientManager.remove(this);
             mainServer.log(address + " disconnected.");
-            mainServer.sendToAll(this, clientManager, "Disconnected");
+            mainServer.sendMsgToAll(this, clientManager, "Disconnected");
+            sendData("{102}"+this.email);
             Thread.currentThread().interrupt();
         } catch (Exception e) {
             e.printStackTrace();

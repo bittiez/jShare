@@ -18,7 +18,7 @@ import java.net.InetAddress;
  * Created by tad on 10/26/14.
  */
 public class mainClient {
-    public static double Version =  2.3;
+    public static double Version =  2.4;
 
 
 
