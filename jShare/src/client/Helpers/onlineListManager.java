@@ -1,9 +1,13 @@
 package client.Helpers;
 
+import client.Design.WrapLayout;
 import client.Guis.UI2;
 import javafx.scene.layout.Pane;
+import org.jdesktop.swingx.HorizontalLayout;
 import org.jdesktop.swingx.VerticalLayout;
+import sun.awt.OrientableFlowLayout;
 import sun.awt.VerticalBagLayout;
+import sun.security.krb5.internal.PAData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,18 +33,20 @@ public class onlineListManager {
     }
 
     public void setLayout(){
-        Panel.setLayout(new GridLayout(0, 5));
+        //Panel.setLayout(new GridLayout(0, 5));
+        Panel.setLayout(new WrapLayout());
+        //Panel.setLayout(new FlowLayout(FlowLayout.LEFT));
     }
 
     public void genFullUserList(){
         resetPanel();
-
+        //System.out.println("<------->");
             for (int i = 0; i < Emails.size(); i++) {
                 if (Emails.get(i) == "" || Emails.get(i) == null || Emails.get(i).isEmpty()) {
                     Emails.remove(i);
                     continue;
                 }
-                System.out.println(Emails.get(i));
+                //System.out.println(Emails.get(i));
                 ImageIcon II = _UI.avatarManager(Emails.get(i));
 
                 JLabel tempLabel = new JLabel(II);
@@ -48,6 +54,7 @@ public class onlineListManager {
                 _AvatarLabels.add(tempLabel);
                 Panel.add(tempLabel);
             }
+        //System.out.println("<------->");
 
             Panel.revalidate();
             Panel.repaint();
@@ -55,7 +62,6 @@ public class onlineListManager {
     }
 
     public void addUser(String Email){
-
         if(Emails.indexOf(Email) < 0) {
             Emails.add(Email);
         }
@@ -69,7 +75,6 @@ public class onlineListManager {
         for (int i = 0; i < Panel.getComponentCount(); i++) {
             Panel.remove(i);
         }
-
         Panel.removeAll();
         _AvatarLabels.clear();
 

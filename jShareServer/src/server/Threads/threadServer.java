@@ -99,7 +99,7 @@ public class threadServer extends Thread{
             clientManager.remove(this);
             mainServer.log(address + " disconnected.");
             mainServer.sendMsgToAll(this, clientManager, "Disconnected");
-            sendData("{102}"+this.email);
+            mainServer.senDataToAll(clientManager, "{102}" + this.email);
             Thread.currentThread().interrupt();
         } catch (Exception e) {
             e.printStackTrace();

@@ -20,7 +20,7 @@ public class programTick implements Runnable {
     public void run() {
         while(true){
             try {
-                Thread.sleep(120000);
+                Thread.sleep(60000);
                 if(Config.updateAvailable)
                     UI.trayIcon.displayMessage("Update available", UI.titleBase + " has an update available, restart the program to update!", TrayIcon.MessageType.INFO);
             } catch (InterruptedException e) {

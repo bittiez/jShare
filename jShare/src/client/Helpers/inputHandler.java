@@ -3,6 +3,7 @@ package client.Helpers;
 /**
  * Created by tad on 11/27/2014.
  */
+
 public class inputHandler {
     public String message;
     public String email;
@@ -18,7 +19,7 @@ public class inputHandler {
                     message = data;
                     break;
                 case 101:
-                    inputtype = inputtype.CONNECTED;
+                    inputtype = inputType.CONNECTED;
                     email = data;
                     break;
                 case 102:

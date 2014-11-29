@@ -20,7 +20,7 @@ public class UI2 {
     private JPanel botPanel;
     private JPanel mainFrame;
     private JPanel chatPane;
-    private JScrollPane scrollPane;
+    public JScrollPane scrollPane;
     private JTextField inputField;
     private JButton sendButton;
     private JPanel onlineList;
@@ -77,6 +77,8 @@ public class UI2 {
         chatPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         onlineList.setPreferredSize(new Dimension(150, scrollPane.getHeight()));
+        onlineList.setMaximumSize(onlineList.getPreferredSize());
+        onlineList.setMinimumSize(onlineList.getPreferredSize());
 
 
         chatPane.setBackground(Config._Theme.backGround);
@@ -92,7 +94,9 @@ public class UI2 {
 
         chatPane.setBorder(Config._Theme.border);
         scrollPane.setBorder(Config._Theme.border);
-        onlineList.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
+        //onlineList.setBorder(Config._Theme.border);
+        //onlineList.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
+        onlineList.setBorder(BorderFactory.createMatteBorder(0,1,0,0, Config._Theme.backGround.darker()));
         inputField.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
         sendButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
 
@@ -279,22 +283,26 @@ public class UI2 {
     }
     public void recData(inputHandler received){
         boolean updateUserList = false;
-        if(received.inputtype == inputType.MESSAGE)
-            addMessage(received.message);
-        if(received.inputtype == inputType.CONNECTED) {
-            onlineListClass.addUser(received.email);
-            updateUserList = true;
-        }
-        if(received.inputtype == inputType.DISCONNECTED) {
-            onlineListClass.remUser(received.email);
-            updateUserList = true;
-        }
-        if(received.inputtype == inputType.ONLINELIST){
-            String[] users = received.message.split("#");
-            for (int i = 0; i < users.length; i++) {
-                onlineListClass.addUser(users[i]);
-            }
-            updateUserList = true;
+
+        switch(received.inputtype){
+            case MESSAGE:
+                addMessage(received.message);
+                break;
+            case CONNECTED:
+                onlineListClass.addUser(received.email);
+                updateUserList = true;
+                break;
+            case DISCONNECTED:
+                onlineListClass.remUser(received.email);
+                updateUserList = true;
+                break;
+            case ONLINELIST:
+                String[] users = received.message.split("#");
+                for (int i = 0; i < users.length; i++) {
+                    onlineListClass.addUser(users[i]);
+                }
+                updateUserList = true;
+                break;
         }
         if(updateUserList)
             onlineListClass.genFullUserList();
