@@ -25,7 +25,6 @@ public class threadServer extends Thread{
 
 
     public threadServer(Socket socket, clientListManager cm, double _clientVersion) {
-
         super("MiniServer");
         this.socket = socket;
         this.clientManager = cm;
@@ -82,10 +81,6 @@ public class threadServer extends Thread{
 
         }
         close();
-    }
-
-    public void sendTorrent(){
-
     }
 
     public void sendData(String data){
