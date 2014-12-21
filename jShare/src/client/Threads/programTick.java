@@ -1,5 +1,6 @@
 package client.Threads;
 
+import client.Design.Notification;
 import client.Guis.UI2;
 import client.Helpers.config;
 
@@ -22,7 +23,7 @@ public class programTick implements Runnable {
             try {
                 Thread.sleep(60000);
                 if(Config.updateAvailable)
-                    UI.trayIcon.displayMessage("Update available", UI.titleBase + " has an update available, restart the program to update!", TrayIcon.MessageType.INFO);
+                    new Notification("Update available", UI.titleBase + " has an update available, restart the program to update!", 5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

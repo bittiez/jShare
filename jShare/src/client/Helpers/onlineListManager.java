@@ -2,15 +2,8 @@ package client.Helpers;
 
 import client.Design.WrapLayout;
 import client.Guis.UI2;
-import javafx.scene.layout.Pane;
-import org.jdesktop.swingx.HorizontalLayout;
-import org.jdesktop.swingx.VerticalLayout;
-import sun.awt.OrientableFlowLayout;
-import sun.awt.VerticalBagLayout;
-import sun.security.krb5.internal.PAData;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 /**

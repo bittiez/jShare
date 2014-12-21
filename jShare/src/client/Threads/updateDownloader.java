@@ -4,6 +4,7 @@ import client.Helpers.config;
 import client.Helpers.socketConnection;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -28,7 +29,8 @@ public class updateDownloader implements Runnable {
 
     public void fetchFile(){
         try {
-            Path tpath = Paths.get(config.UpdateFile);
+
+            Path tpath = Paths.get(new File("").getAbsolutePath(), config.UpdateFile);
             if(Files.exists(tpath)){
                 Files.deleteIfExists(tpath);
             }

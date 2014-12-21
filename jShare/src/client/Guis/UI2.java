@@ -1,16 +1,23 @@
 package client.Guis;
 
+import client.Design.Notification;
 import client.Design.uScrollBar;
 import client.Helpers.*;
 import client.mainClient;
 import org.jdesktop.swingx.VerticalLayout;
 
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -24,6 +31,10 @@ public class UI2 {
     private JTextField inputField;
     private JButton sendButton;
     private JPanel onlineList;
+    private JTabbedPane tabbedPane1;
+    private JPanel chatTab;
+    private JPanel ChangeLogTab;
+    private JTextPane textPaneChaneLog;
     public JFrame frame = null;
 
     private ArrayList<JPanel> chatPanels = null;
@@ -40,7 +51,6 @@ public class UI2 {
     private config Config= null;
     public String titleBase = "jChat " + mainClient.Version;
     private int messageCountMissed = 0;
-    public TrayIcon trayIcon = null;
     public onlineListManager onlineListClass;
 
 
@@ -59,17 +69,18 @@ public class UI2 {
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         frame.setIconImage(Config.ICON.getImage());
-        if (SystemTray.isSupported()) {
-            SystemTray tray = SystemTray.getSystemTray();
-            trayIcon = new TrayIcon(frame.getIconImage(), titleBase);
-            trayIcon.setImageAutoSize(true);
-            try {
-                tray.add(trayIcon);
-            } catch (Exception e){
-                System.err.println(e);
-            }
+        textPaneChaneLog.setEditable(false);
+        StringBuilder versionPanel = new StringBuilder();
+        versionPanel.append("V2.7\n");
+        versionPanel.append("--Changed message content to html\n");
+        versionPanel.append("--Changed over to new notifications\n");
+        versionPanel.append("\n\n");
+        versionPanel.append("V2.6\n");
+        versionPanel.append("--Added colored emails/user names\n");
+        versionPanel.append("--Added Change log\n");
+        versionPanel.append("--Fixed Ubuntu not downloading the update file to the right location\n");
 
-        }
+        textPaneChaneLog.setText(versionPanel.toString());
 
         chatPane.setLayout(new VerticalLayout());
         chatPane.setSize(scrollPane.getWidth(), scrollPane.getHeight());
@@ -87,19 +98,28 @@ public class UI2 {
         inputField.setBackground(Config._Theme.inputFieldBackGround);
         sendButton.setBackground(Config._Theme.button);
         onlineList.setBackground(Config._Theme.backGround);
+        chatTab.setBackground(Config._Theme.backGround);
+        ChangeLogTab.setBackground(Config._Theme.backGround);
+        tabbedPane1.setBackground(Config._Theme.backGround);
+        textPaneChaneLog.setBackground(Config._Theme.backGround);
+
 
         chatPane.setForeground(Config._Theme.mainText);
         inputField.setForeground(Config._Theme.secondaryText);
         sendButton.setForeground(Config._Theme.mainText);
+        chatTab.setForeground(Config._Theme.mainText);
+        ChangeLogTab.setForeground(Config._Theme.mainText);
+        tabbedPane1.setForeground(Config._Theme.mainText);
+        textPaneChaneLog.setForeground(Config._Theme.mainText);
 
         chatPane.setBorder(Config._Theme.border);
         scrollPane.setBorder(Config._Theme.border);
-        //onlineList.setBorder(Config._Theme.border);
-        //onlineList.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
+        chatTab.setBorder(Config._Theme.border);
+        ChangeLogTab.setBorder(Config._Theme.border);
+        tabbedPane1.setBorder(Config._Theme.border);
         onlineList.setBorder(BorderFactory.createMatteBorder(0,1,0,0, Config._Theme.backGround.darker()));
         inputField.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
         sendButton.setBorder(BorderFactory.createLineBorder(Config._Theme.backGround.darker()));
-
 
 
         sendButton.addMouseListener(new MouseAdapter() {
@@ -195,22 +215,45 @@ public class UI2 {
     }
 
 
-
+    final Desktop desktop = Desktop.getDesktop();
 
     public void addMessage(String message){
         String[] msg = message.split(":", 2);
         JLabel name = new JLabel(msg[0]);
         name.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        name.setForeground(Config._Theme.mainText);
+        name.setForeground(colorManager(msg[0]));
+        //name.setForeground(Config._Theme.mainText);
 
         JTextPane tl = new JTextPane();
-        tl.setText(msg[1]);
+        tl.setContentType("text/html");
+        String tColor = Integer.toHexString( Config._Theme.mainText.getRGB() & 0x00ffffff );
+        tl.setText("<html><span style='color: #"+tColor+"; font: verdana, arial;'>"+msg[1] + "</span></html>");
         tl.setEditable(false);
         tl.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
         tl.setForeground(Config._Theme.mainText);
         tl.setBackground(Config._Theme.backGround);
         tl.setMaximumSize(new Dimension(chatPane.getWidth() - 10, 150));
         tl.setPreferredSize(new Dimension(chatPane.getWidth() -10, 20));
+
+        tl.addHyperlinkListener(new HyperlinkListener() {
+
+            public void hyperlinkUpdate(HyperlinkEvent hle) {
+                if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
+                    try {
+
+                        System.out.println(hle.getURL());
+                        try {
+                            desktop.browse(new URI(hle.getURL().toString()));
+                        } catch (URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        });
 
 
         JPanel jp = new JPanel();
@@ -251,7 +294,7 @@ public class UI2 {
 
         if(!frame.isActive()) {
             messageCountMissed++;
-            trayIcon.displayMessage(messageCountMissed + " unread messages!", messageCountMissed + " unread messages!", TrayIcon.MessageType.INFO);
+            new Notification(messageCountMissed + " unread messages!", messageCountMissed + " unread messages!", 5);
             frame.setTitle(titleBase + " (" + messageCountMissed + ")");
         } else {
             if(messageCountMissed > 0) {
@@ -271,6 +314,19 @@ public class UI2 {
             avatars.add(a);
             return a._image;
         }
+    }
+
+    public Color colorManager(String email){
+        int i = avatarEmails.indexOf(email);
+        if(i != -1){
+            return avatars.get(i).fontColor;
+        } else {
+            avatar a = new avatar(email);
+            avatarEmails.add(email);
+            avatars.add(a);
+            return a.fontColor;
+        }
+
     }
     public void sendData(String data){
         try {

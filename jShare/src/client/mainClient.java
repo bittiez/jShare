@@ -11,14 +11,13 @@ import client.Threads.pingManager;
 import client.Threads.programTick;
 import client.Threads.updateDownloader;
 
-import javax.swing.*;
 import java.net.InetAddress;
 
 /**
  * Created by tad on 10/26/14.
  */
 public class mainClient {
-    public static double Version =  2.5;
+    public static double Version =  2.7;
 
 
 
