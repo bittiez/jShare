@@ -21,7 +21,7 @@ public class sendUpdateListener implements Runnable {
         try {
             serverSocket = new ServerSocket(_port);
         } catch (IOException e) {
-            System.err.println("Could not listen on port: " + serverSocket.getLocalPort());
+            System.err.println("Could not listen on port: " + _port);
             listeningSocket = false;
         } finally {
             System.out.println("Update file server listening on: " + serverSocket.getInetAddress().getHostAddress() + ":" + serverSocket.getLocalPort());

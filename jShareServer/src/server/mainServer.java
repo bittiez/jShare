@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.Exchanger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,7 +55,7 @@ public class mainServer {
             serverSocket = new ServerSocket(Integer.parseInt(config.get(0)));
             log("Server listening on: " + serverSocket.getInetAddress().getHostAddress() + ":" + serverSocket.getLocalPort());
         } catch (IOException e) {
-            System.err.println("Could not listen on port: " + serverSocket.getLocalPort());
+            System.err.println("Could not listen on port: " + config.get(0));
             listeningSocket = false;
         }
 
@@ -68,7 +69,9 @@ public class mainServer {
             clientManager.add(mini);
             //sendMsgToAll(clientManager, "Someone connected to the server..");
         }
-        serverSocket.close();
+        try {
+            serverSocket.close();
+        } catch(Exception E){}
     }
 
 
